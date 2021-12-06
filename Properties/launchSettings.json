@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ThrowObjectDetection (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ThrowObjectDetection (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
