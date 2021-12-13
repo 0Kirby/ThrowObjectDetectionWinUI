@@ -27,10 +27,10 @@ namespace ThrowObjectDetection
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class Presenters : Page
+    public sealed partial class TrainPage : Page
     {
         AppWindow m_mainAppWindow;
-        public Presenters()
+        public TrainPage()
         {
             this.InitializeComponent();
             Window window = MainWindow.Current;

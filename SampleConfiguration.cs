@@ -17,15 +17,17 @@ namespace ThrowObjectDetection
     {
         private readonly List<Scenario> scenarios = new()
         {
-            new Scenario() { Title = "Window Basics", ClassName = typeof(WindowBasics).FullName },
-            new Scenario() { Title = "Title Bar", ClassName = typeof(TitleBar).FullName },
-            new Scenario() { Title = "Presenters", ClassName = typeof(Presenters).FullName }
+            new Scenario() { Title = "主页", Icon = "\uE80F" ,ClassName = typeof(HomePage).FullName },
+            new Scenario() { Title = "标注", Icon = "\uE70F", ClassName = typeof(AnnotatePage).FullName },
+            new Scenario() { Title = "训练", Icon = "\uE945", ClassName = typeof(TrainPage).FullName },
+            new Scenario() { Title = "检测", Icon = "\uE8A3", ClassName = typeof(DetectPage).FullName }
         };
     }
 
     public class Scenario
     {
         public string Title { get; set; }
+        public string Icon { get; set; }
         public string ClassName { get; set; }
     }
 }

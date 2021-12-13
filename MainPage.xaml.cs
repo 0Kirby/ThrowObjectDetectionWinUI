@@ -35,9 +35,12 @@ namespace ThrowObjectDetection
                 {
                     Content = item.Title,
                     Tag = item.ClassName,
-                    Icon = new FontIcon() { FontFamily = new("Segoe MDL2 Assets"), Glyph = "\uE82D" }
+                    Icon = new FontIcon() { FontFamily = new("Segoe MDL2 Assets"), Glyph = item.Icon }
                 });
             }
+
+            NavigationViewItem settings = (NavigationViewItem)NavView.SettingsItem;
+            settings.Content = "设置";
 
             // NavView doesn't load any page by default, so load home page.
             NavView.SelectedItem = NavView.MenuItems[0];
@@ -110,7 +113,7 @@ namespace ThrowObjectDetection
             {
                 // SettingsItem is not part of NavView.MenuItems, and doesn't have a Tag.
                 NavView.SelectedItem = (NavigationViewItem)NavView.SettingsItem;
-                NavView.Header = "Settings";
+                NavView.Header = "设置";
             }
             else if (ContentFrame.SourcePageType != null)
             {

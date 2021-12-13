@@ -11,13 +11,13 @@ using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace ThrowObjectDetection
 {
-    public partial class TitleBar : Page
+    public partial class AnnotatePage : Page
     {
         private AppWindow m_mainAppWindow;
         private bool m_isBrandedTitleBar;
         private MainWindow m_mainWindow;
         private MainPage m_mainPage;
-        public TitleBar()
+        public AnnotatePage()
         {
             this.InitializeComponent();
             m_mainWindow = MainWindow.Current;

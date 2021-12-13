@@ -37,7 +37,7 @@
                          ItemInvoked="NavView_ItemInvoked"
                          BackRequested="NavView_BackRequested">
             <NavigationView.MenuItems>
-                <NavigationViewItemHeader x:Name="MainPagesHeader" Content="Scenarios"/>
+                <NavigationViewItemHeader x:Name="MainPagesHeader" Content="功能"/>
             </NavigationView.MenuItems>
 
             <Grid RowDefinitions="*,Auto">

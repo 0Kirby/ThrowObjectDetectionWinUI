@@ -1,7 +1,7 @@
 ﻿<!-- Copyright (c) Microsoft Corporation.
      Licensed under the MIT License. -->
 <Page
-    x:Class="ThrowObjectDetection.TitleBar"
+    x:Class="ThrowObjectDetection.AnnotatePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ThrowObjectDetection"

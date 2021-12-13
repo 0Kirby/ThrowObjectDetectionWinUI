@@ -1,10 +1,12 @@
 {
   "profiles": {
     "ThrowObjectDetection (Package)": {
-      "commandName": "MsixPackage"
+      "commandName": "MsixPackage",
+      "nativeDebugging": true
     },
     "ThrowObjectDetection (Unpackaged)": {
-      "commandName": "Project"
+      "commandName": "Project",
+      "nativeDebugging": true
     }
   }
 }
