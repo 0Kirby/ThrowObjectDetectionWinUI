@@ -30,6 +30,7 @@ namespace ThrowObjectDetection
             LoadIcon(hwnd, "Assets/windows-sdk.ico");
             SetWindowSize(hwnd, 1050, 800);
             PlacementCenterWindowInMonitorWin32(hwnd);
+
         }
 
         private unsafe void LoadIcon(HWND hwnd, string iconName)

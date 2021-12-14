@@ -1,13 +1,14 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.Storage;
 
 namespace ThrowObjectDetection
 {
@@ -15,16 +16,31 @@ namespace ThrowObjectDetection
     {
         public static MainPage Current;
         Window window;
-        public List<Scenario> Scenarios => this.scenarios;
-
+        public List<Scenario> Scenarios => this.scenarios; 
+       
         public MainPage()
         {
             window = MainWindow.Current;
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             InitializeComponent();
 
             // This is a static public property that allows downstream pages to get a handle to the MainPage instance
             // in order to call methods that are in this class.
             Current = this;
+
+            // Auto change themeMode
+            object themeMode = localSettings.Values["themeMode"];
+            if (themeMode == null)
+                localSettings.Values["themeMode"] = 0;
+            else
+            {
+                Grid content = Current.Content as Grid;
+                if (content is not null)
+                {
+                    content.RequestedTheme = (ElementTheme)themeMode;
+                    Settings.CurrentTheme = content.RequestedTheme;
+                }
+            }
         }
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)

@@ -5,6 +5,7 @@ using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
 using System.Linq;
+using Windows.Storage;
 
 namespace ThrowObjectDetection
 {
@@ -23,15 +24,15 @@ namespace ThrowObjectDetection
 
         private void OnThemeRadioButtonChecked(object sender, RoutedEventArgs e)
         {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             ElementTheme selectedTheme = (ElementTheme)((RadioButton)sender).Tag;
-
             Grid content = MainPage.Current.Content as Grid;
             if (content is not null)
             {
                 content.RequestedTheme = selectedTheme;
                 Settings.CurrentTheme = content.RequestedTheme;
+                localSettings.Values["themeMode"] = (int)selectedTheme;
             }
-
         }
     }
 }

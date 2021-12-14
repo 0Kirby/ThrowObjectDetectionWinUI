@@ -9,11 +9,11 @@
   <Identity
     Name="b77fbf3c-0926-4144-86f9-3a60e2f6d6d9"
     Publisher="CN=Microsoft Corporation"
-    Version="1.0.0.0" />
+    Version="0.1.0.0" />
 
   <Properties>
     <DisplayName>ThrowObjectDetection</DisplayName>
-    <PublisherDisplayName>Microsoft Corporation</PublisherDisplayName>
+    <PublisherDisplayName>0Kirby</PublisherDisplayName>
     <Logo>Assets\logo.png</Logo>
   </Properties>
 

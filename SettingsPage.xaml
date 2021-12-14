@@ -34,7 +34,8 @@
         </ScrollViewer>
         
         <StackPanel Spacing="10" Margin="10,10,10,10" Orientation="Vertical" VerticalAlignment="Bottom" Grid.Row="0">
-            <TextBlock Text="&#xA9; Microsoft Corporation. All rights reserved." Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+            <TextBlock Text="ThrowObjectDetection-WinUI v0.1.0" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+            <TextBlock Text="&#xA9; 0Kirby. All rights reserved." Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
         </StackPanel>
     </Grid>
 </Page>
