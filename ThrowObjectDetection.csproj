@@ -11,6 +11,7 @@
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <PublishProfile>Properties\PublishProfiles\win10-$(Platform).pubxml</PublishProfile>
     <DefaultLanguage>zh-Hans</DefaultLanguage>
+    <UseWPF>False</UseWPF>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="DetectPage.xaml" />
@@ -19,7 +20,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.0.0" />
     <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22000.196" />
-    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.1.588-beta" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.1.619-beta" PrivateAssets="all" />
   </ItemGroup>
 
   <ItemGroup>

@@ -30,6 +30,7 @@
                         </RadioButton.Tag>
                     </RadioButton>
                 </StackPanel>
+                <TextBox x:Name="SettingsText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" />
             </StackPanel>
         </ScrollViewer>
         

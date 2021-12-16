@@ -3,30 +3,33 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
-using System;
+using Microsoft.UI.Windowing;
 using System.Runtime.InteropServices;
 using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Gdi;
-using Windows.Win32.UI.Controls;
 using Windows.Win32.UI.WindowsAndMessaging;
-using static Windows.Win32.Constants;
 using static Windows.Win32.PInvoke;
+using Microsoft.UI.Dispatching;
 
 namespace ThrowObjectDetection
 {
     public partial class MainWindow : Window
     {
-        public String m_windowTitle = "WinUI Desktop C# Sample App";
-        public static new MainWindow Current;
+        public static AppWindow AppWindow;
+        public static DispatcherQueue dispatcherQueue;
+        public static Window Window;
+        public string WindowTitle;
+
         public MainWindow()
         {
+
             this.InitializeComponent();
 
-            Current = this;
-            this.Title = m_windowTitle;
+            AppWindow = AppWindowExtensions.GetAppWindow(this);
+            Window = this;
             Title = Settings.FeatureName;
-
             HWND hwnd = (HWND)WinRT.Interop.WindowNative.GetWindowHandle(this);
+            dispatcherQueue = DispatcherQueue.GetForCurrentThread();
             LoadIcon(hwnd, "Assets/windows-sdk.ico");
             SetWindowSize(hwnd, 1050, 800);
             PlacementCenterWindowInMonitorWin32(hwnd);
