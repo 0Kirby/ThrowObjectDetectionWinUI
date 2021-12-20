@@ -11,7 +11,8 @@
     <EnablePreviewMsixTooling>true</EnablePreviewMsixTooling>
     <PublishProfile>Properties\PublishProfiles\win10-$(Platform).pubxml</PublishProfile>
     <DefaultLanguage>zh-Hans</DefaultLanguage>
-    <UseWPF>False</UseWPF>
+    <PackageCertificateThumbprint>A711403A900978455A53A7938B21379648E958EB</PackageCertificateThumbprint>
+    <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="DetectPage.xaml" />

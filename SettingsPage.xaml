@@ -12,31 +12,47 @@
     <Grid RowDefinitions="*,Auto">
         <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
             <StackPanel Spacing="10" Margin="10,10,10,10" >
-                <TextBlock Text="Theme Mode" Style="{StaticResource SampleHeaderTextStyle}"/>
-                <StackPanel x:Name="themePanel">
-                    <RadioButton Checked="OnThemeRadioButtonChecked" Content="Light">
-                        <RadioButton.Tag>
-                            <ElementTheme>Light</ElementTheme>
-                        </RadioButton.Tag>
-                    </RadioButton>
-                    <RadioButton Checked="OnThemeRadioButtonChecked" Content="Dark">
-                        <RadioButton.Tag>
-                            <ElementTheme>Dark</ElementTheme>
-                        </RadioButton.Tag>
-                    </RadioButton>
-                    <RadioButton Checked="OnThemeRadioButtonChecked" Content="System Default">
-                        <RadioButton.Tag>
-                            <ElementTheme>Default</ElementTheme>
-                        </RadioButton.Tag>
-                    </RadioButton>
-                </StackPanel>
-                <TextBox x:Name="SettingsText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" />
+                <TextBlock Text="Theme Mode" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="White" Padding="10" CornerRadius="5">
+                    <StackPanel x:Name="themePanel">
+                        <RadioButton Checked="OnThemeRadioButtonChecked" Content="Light">
+                            <RadioButton.Tag>
+                                <ElementTheme>Light</ElementTheme>
+                            </RadioButton.Tag>
+                        </RadioButton>
+                        <RadioButton Checked="OnThemeRadioButtonChecked" Content="Dark">
+                            <RadioButton.Tag>
+                                <ElementTheme>Dark</ElementTheme>
+                            </RadioButton.Tag>
+                        </RadioButton>
+                        <RadioButton Checked="OnThemeRadioButtonChecked" Content="System Default">
+                            <RadioButton.Tag>
+                                <ElementTheme>Default</ElementTheme>
+                            </RadioButton.Tag>
+                        </RadioButton>
+                    </StackPanel>
+                </Border>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="White" Padding="10" CornerRadius="5">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Rectangle Fill="Red" Width="50" Height="50" Margin="5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <Rectangle Fill="Blue" Width="50" Height="50" Margin="5"/>
+                            <Rectangle Fill="Green" Width="50" Height="50" Margin="5"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Rectangle Fill="Purple" Width="50" Height="50" Margin="5"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <TextBox x:Name="SettingsText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400"/>
+                <TextBlock Text="ThrowObjectDetection-WinUI v0.2.0" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                <TextBlock Text="&#xA9; 0Kirby. All rights reserved." Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
             </StackPanel>
         </ScrollViewer>
-        
-        <StackPanel Spacing="10" Margin="10,10,10,10" Orientation="Vertical" VerticalAlignment="Bottom" Grid.Row="0">
-            <TextBlock Text="ThrowObjectDetection-WinUI v0.1.0" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-            <TextBlock Text="&#xA9; 0Kirby. All rights reserved." Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-        </StackPanel>
     </Grid>
 </Page>

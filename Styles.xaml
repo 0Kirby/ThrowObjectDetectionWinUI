@@ -116,6 +116,10 @@
         <Setter Property="FontSize" Value="28"/>
     </Style>
 
+    <Style x:Key="SettingHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
     <Style x:Key="CopyrightTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BaseTextBlockStyle}">
         <Setter Property="FontWeight" Value="Normal"/>
     </Style>
