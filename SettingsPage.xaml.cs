@@ -67,5 +67,10 @@ namespace ThrowObjectDetection
                 localSettings.Values["themeMode"] = (int)selectedTheme;
             }
         }
+
+        private void BrowseBtn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

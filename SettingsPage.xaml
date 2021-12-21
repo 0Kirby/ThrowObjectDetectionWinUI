@@ -10,47 +10,57 @@
     mc:Ignorable="d">
 
     <Grid RowDefinitions="*,Auto">
-        <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ScrollViewer>
             <StackPanel Spacing="10" Margin="10,10,10,10" >
-                <TextBlock Text="Theme Mode" Style="{StaticResource SettingHeaderTextStyle}"/>
-                <Border BorderThickness="1" BorderBrush="Gray" Background="White" Padding="10" CornerRadius="5">
-                    <StackPanel x:Name="themePanel">
-                        <RadioButton Checked="OnThemeRadioButtonChecked" Content="Light">
-                            <RadioButton.Tag>
-                                <ElementTheme>Light</ElementTheme>
-                            </RadioButton.Tag>
-                        </RadioButton>
-                        <RadioButton Checked="OnThemeRadioButtonChecked" Content="Dark">
-                            <RadioButton.Tag>
-                                <ElementTheme>Dark</ElementTheme>
-                            </RadioButton.Tag>
-                        </RadioButton>
-                        <RadioButton Checked="OnThemeRadioButtonChecked" Content="System Default">
-                            <RadioButton.Tag>
-                                <ElementTheme>Default</ElementTheme>
-                            </RadioButton.Tag>
-                        </RadioButton>
+                <TextBlock Text="主题模式" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;" Margin="5"/>
+                            <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                                <TextBlock Text="theme" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                                <TextBlock Text="更改应用中显示的颜色" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            </StackPanel>
+                        </StackPanel>
+                        <StackPanel x:Name="themePanel" Margin="5">
+                            <RadioButton Checked="OnThemeRadioButtonChecked" Content="浅色">
+                                <RadioButton.Tag>
+                                    <ElementTheme>Light</ElementTheme>
+                                </RadioButton.Tag>
+                            </RadioButton>
+                            <RadioButton Checked="OnThemeRadioButtonChecked" Content="深色">
+                                <RadioButton.Tag>
+                                    <ElementTheme>Dark</ElementTheme>
+                                </RadioButton.Tag>
+                            </RadioButton>
+                            <RadioButton Checked="OnThemeRadioButtonChecked" Content="使用系统设置">
+                                <RadioButton.Tag>
+                                    <ElementTheme>Default</ElementTheme>
+                                </RadioButton.Tag>
+                            </RadioButton>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
-                <Border BorderThickness="1" BorderBrush="Gray" Background="White" Padding="10" CornerRadius="5">
+                <TextBlock Text="Python解释器路径" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Rectangle Fill="Red" Width="50" Height="50" Margin="5"/>
+                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE943;" Margin="5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
-                            <Rectangle Fill="Blue" Width="50" Height="50" Margin="5"/>
-                            <Rectangle Fill="Green" Width="50" Height="50" Margin="5"/>
+                            <TextBlock Text="python" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="指定Python解释器的路径，如未设置则使用环境变量中的Python" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Rectangle Fill="Purple" Width="50" Height="50" Margin="5"/>
+                            <Button Content="选取文件" Click="BrowseBtn_Click" Margin="5"/>
                         </StackPanel>
                     </Grid>
                 </Border>
                 <TextBox x:Name="SettingsText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400"/>
-                <TextBlock Text="ThrowObjectDetection-WinUI v0.2.0" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                <TextBlock Text="ThrowObjectDetection-WinUI v0.3.0" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
                 <TextBlock Text="&#xA9; 0Kirby. All rights reserved." Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
             </StackPanel>
         </ScrollViewer>
