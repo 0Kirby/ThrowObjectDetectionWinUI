@@ -4,28 +4,38 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
+using System;
 using System.Diagnostics;
 using System.Linq;
 using Windows.Storage;
+using Windows.Storage.Pickers;
+using Windows.Win32.Foundation;
 
 namespace ThrowObjectDetection
 {
     public partial class SettingsPage : Page
     {
+        private Window _mainWindow;
+        private HWND _windowHandle;
         public delegate void DelReadErrOutput(string result);
 
         public SettingsPage()
         {
             this.InitializeComponent();
+
+            _mainWindow = MainWindow.Window;
+            _windowHandle = (HWND)WinRT.Interop.WindowNative.GetWindowHandle(_mainWindow);
+
             RunPythonCode();
         }
 
         private void RunPythonCode()
         {
             SettingsText.Text = "";
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             Process p = new Process();
             p.StartInfo.WorkingDirectory = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5";
-            p.StartInfo.FileName = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\venv\Scripts\python.exe"; //虚拟环境中python的安装路径
+            p.StartInfo.FileName = (String)localSettings.Values["pythonInterpreter"]; //虚拟环境中python的安装路径
             //p.StartInfo.Arguments = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5\models\yolo.py --cfg C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5\models\yolov5n6-C3TR-CBAM-P2.yaml";
             p.StartInfo.Arguments = @"D:\hello.py";
             //p.StartInfo.Arguments = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5\train.py --img 640 --batch 1 --epoch 2 --data data/car.yaml --cfg models/yolov5n.yaml --weights weights/yolov5n.pt";
@@ -68,9 +78,18 @@ namespace ThrowObjectDetection
             }
         }
 
-        private void BrowseBtn_Click(object sender, RoutedEventArgs e)
+        private async void BrowseBtn_Click(object sender, RoutedEventArgs e)
         {
+            FileOpenPicker filePicker = new FileOpenPicker();
+            filePicker.FileTypeFilter.Add(".exe");
+            WinRT.Interop.InitializeWithWindow.Initialize(filePicker, _windowHandle);
+            var file = await filePicker.PickSingleFileAsync();
 
+            if (file != null)
+            {
+                ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+                localSettings.Values["pythonInterpreter"] = file.Path;
+            }
         }
     }
 }

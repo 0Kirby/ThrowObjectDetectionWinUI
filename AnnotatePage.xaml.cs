@@ -1,11 +1,9 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Windowing;
-using WinRT;
-using Microsoft.UI.Xaml.Navigation;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 
@@ -21,7 +19,7 @@ namespace ThrowObjectDetection
             this.InitializeComponent();
             _mainAppWindow.Changed += MainAppWindow_Changed;
         }
- 
+
 
         private void MainAppWindow_Changed(AppWindow sender, AppWindowChangedEventArgs args)
         {

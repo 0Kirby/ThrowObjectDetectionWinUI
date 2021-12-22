@@ -4,32 +4,20 @@ using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using System;
-using Windows.Win32.Foundation;
 
 namespace ThrowObjectDetection
 {
     public partial class HomePage : Page
     {
         private AppWindow _mainAppWindow;
-        private Window _mainWindow;
-        private HWND _windowHandle;
         public HomePage()
         {
-
             this.InitializeComponent();
-
             _mainAppWindow = MainWindow.AppWindow;
-            _mainWindow = MainWindow.Window;
-            _windowHandle = (HWND)WinRT.Interop.WindowNative.GetWindowHandle(_mainWindow);
         }
 
         private async void TitleBtn_Click(object sender, RoutedEventArgs e)
         {
-            var filePicker = new Windows.Storage.Pickers.FileOpenPicker();
-            filePicker.FileTypeFilter.Add("*");
-            WinRT.Interop.InitializeWithWindow.Initialize(filePicker, _windowHandle);
-            var file = await filePicker.PickSingleFileAsync();
-
             if (TitleTextBox.Text.Contains("\n"))
             {
                 ContentDialog errorDialog = new ContentDialog()
@@ -43,11 +31,6 @@ namespace ThrowObjectDetection
             else
             {
                 _mainAppWindow.Title = TitleTextBox.Text;
-            }
-
-            if (file != null)
-            {
-                _mainAppWindow.Title = "!!!";
             }
         }
 

@@ -16,31 +16,18 @@ namespace ThrowObjectDetection
     {
         public static MainPage Current;
         Window window;
-        public List<Scenario> Scenarios => this.scenarios; 
-       
+        public List<Scenario> Scenarios => this.scenarios;
+
         public MainPage()
         {
             window = MainWindow.Current;
-            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             InitializeComponent();
 
             // This is a static public property that allows downstream pages to get a handle to the MainPage instance
             // in order to call methods that are in this class.
             Current = this;
 
-            // Auto change themeMode
-            object themeMode = localSettings.Values["themeMode"];
-            if (themeMode == null)
-                localSettings.Values["themeMode"] = 0;
-            else
-            {
-                Grid content = Current.Content as Grid;
-                if (content is not null)
-                {
-                    content.RequestedTheme = (ElementTheme)themeMode;
-                    Settings.CurrentTheme = content.RequestedTheme;
-                }
-            }
+            InitialLocalSettings();
         }
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
@@ -148,6 +135,29 @@ namespace ThrowObjectDetection
         private void MyWindowIcon_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             window.Close();
+        }
+
+        private static void InitialLocalSettings()
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            // Auto change themeMode
+            object themeMode = localSettings.Values["themeMode"];
+            if (themeMode == null)
+                localSettings.Values["themeMode"] = 0;
+            else
+            {
+                Grid content = Current.Content as Grid;
+                if (content is not null)
+                {
+                    content.RequestedTheme = (ElementTheme)themeMode;
+                    Settings.CurrentTheme = content.RequestedTheme;
+                }
+            }
+
+            // Initialize Python interpreter
+            object pythonInterpreter = localSettings.Values["pythonInterpreter"];
+            if (pythonInterpreter == null)
+                localSettings.Values["pythonInterpreter"] = "python";
         }
     }
 }
