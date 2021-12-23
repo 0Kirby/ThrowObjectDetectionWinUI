@@ -44,23 +44,33 @@
                 <TextBlock Text="Python解释器路径" Style="{StaticResource SettingHeaderTextStyle}"/>
                 <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
                     <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE943;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
                             <TextBlock Text="python" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
                             <TextBlock Text="指定Python解释器的路径，如未设置则使用环境变量中的Python" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="当前设置：" TextWrapping="Wrap"/>
+                                <TextBlock x:Name="PythonPath" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            </StackPanel>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Content="选取文件" Click="BrowseBtn_Click" Margin="5"/>
                         </StackPanel>
+                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="SettingsText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400"/>
+                        <Button Margin="0, 5, 0, 0" Click="TestBtn_Click" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource AccentButtonStyle}" Content="测试解释器" HorizontalAlignment="Center"/>
                     </Grid>
                 </Border>
-                <TextBox x:Name="SettingsText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400"/>
-                <TextBlock Text="ThrowObjectDetection-WinUI v0.3.1" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                <TextBlock Text="ThrowObjectDetection-WinUI v0.3.2" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
                 <TextBlock Text="&#xA9; 0Kirby. All rights reserved." Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
             </StackPanel>
         </ScrollViewer>

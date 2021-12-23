@@ -13,6 +13,7 @@ namespace ThrowObjectDetection
         public DetectPage()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
     }
 }

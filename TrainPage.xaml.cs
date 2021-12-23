@@ -21,6 +21,7 @@ namespace ThrowObjectDetection
         public TrainPage()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
             // Register for window changed events while on this page.
             _mainAppWindow.Changed += AppWindowChangedHandler;
         }

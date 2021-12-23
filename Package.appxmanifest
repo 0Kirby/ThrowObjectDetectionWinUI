@@ -9,7 +9,7 @@
   <Identity
     Name="b77fbf3c-0926-4144-86f9-3a60e2f6d6d9"
     Publisher="CN=0Kirby Software, O=0Kirby Corporation, C=CN"
-    Version="0.3.1.0" />
+    Version="0.3.2.0" />
 
   <Properties>
     <DisplayName>ThrowObjectDetection</DisplayName>

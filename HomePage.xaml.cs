@@ -13,6 +13,7 @@ namespace ThrowObjectDetection
         public HomePage()
         {
             this.InitializeComponent();
+            this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
             _mainAppWindow = MainWindow.AppWindow;
         }
 

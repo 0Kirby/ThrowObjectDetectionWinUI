@@ -22,6 +22,7 @@ namespace ThrowObjectDetection
         {
             window = MainWindow.Current;
             InitializeComponent();
+            this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
 
             // This is a static public property that allows downstream pages to get a handle to the MainPage instance
             // in order to call methods that are in this class.
@@ -78,7 +79,9 @@ namespace ThrowObjectDetection
             // Only navigate if the selected page isn't currently loaded.
             if ((page is not null) && !Type.Equals(preNavPageType, page))
             {
+                GC.Collect();
                 ContentFrame.Navigate(page, null, transitionInfo);
+                GC.Collect();
             }
         }
 
