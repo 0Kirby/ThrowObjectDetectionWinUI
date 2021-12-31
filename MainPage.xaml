@@ -10,39 +10,42 @@
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" x:Name="MyTitleBar" Background="Blue" x:FieldModifier="public" Visibility="Collapsed">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Image x:Name="MyWindowIcon" 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Border x:Name="AppTitleBar" Background="Transparent" x:FieldModifier="public" Height="48" Canvas.ZIndex="1"
+                VerticalAlignment="Top">
+            <Grid x:Name="AppTitle">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Image x:Name="MyWindowIcon" 
                 Source="/Assets/window_icon.png" 
                 Grid.Column="0" 
                 HorizontalAlignment="Left" 
                 x:FieldModifier="public"
-                Width="20" Height="20" Margin="12,0"
-                DoubleTapped="MyWindowIcon_DoubleTapped"/>
-            <TextBlock 
-                Text="Custom titlebar with interactive content" 
-                Grid.Column="0" 
-                Style="{StaticResource CaptionTextBlockStyle}" 
-                Margin="44,8,0,0"/>
-        </Grid>
-        <NavigationView Grid.Row="1" x:Name="NavView"
+                Width="20" Height="20" Margin="12,0"/>
+                <TextBlock x:Name="TitleText"
+                Text="高空抛物目标检测" 
+                VerticalAlignment="Center"
+                Grid.Column="1" 
+                Style="{StaticResource CaptionTextBlockStyle}" />
+            </Grid>
+        </Border>
+        <NavigationView  x:Name="NavView"
                          Loaded="NavView_Loaded"
-                         ItemInvoked="NavView_ItemInvoked"
-                         BackRequested="NavView_BackRequested">
+                         ItemInvoked="NavView_ItemInvoked"  PaneOpening="NavigationViewControl_PaneOpened"
+                         PaneClosing="NavigationViewControl_PaneClosing" DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
+                         BackRequested="NavView_BackRequested" AlwaysShowHeader="True" Header=" " IsTabStop="False"  IsTitleBarAutoPaddingEnabled="False"
+                         VerticalAlignment="Stretch" Canvas.ZIndex="0">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader x:Name="MainPagesHeader" Content="功能"/>
             </NavigationView.MenuItems>
 
             <Grid RowDefinitions="*,Auto">
                 <ScrollViewer>
-                    <Frame Padding="50" x:Name="ContentFrame" Navigated="ContentFrame_Navigated" />
+                    <Frame Padding="50, 50, 50, 20" x:Name="ContentFrame" Navigated="ContentFrame_Navigated" />
                 </ScrollViewer>
             </Grid>
         </NavigationView>

@@ -10,30 +10,28 @@
     mc:Ignorable="d">
 
     <Grid RowDefinitions="*,Auto">
-        <ScrollViewer Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-            <StackPanel Spacing="10" Margin="10,10,10,10">
-                <TextBlock Text="Description" Style="{StaticResource SampleHeaderTextStyle}"/>
-                <TextBlock Style="{StaticResource ScenarioDescriptionTextStyle}" TextWrapping="Wrap">
-                    Customize the look of your app's window with the Windows App SDK AppWindow class.
-                </TextBlock>
+        <ScrollViewer VerticalAlignment="Center">
+            <StackPanel Spacing="10" Margin="10">
                 <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" ></RowDefinition>
-                        <RowDefinition Height="Auto" ></RowDefinition>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0" Spacing="10" Margin="0,0,0,10"  Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBox Width="200" x:Name="TitleTextBox" Text="WinUI ❤️ AppWindow"/>
-                        <Button Content="Set Window Title" Click="TitleBtn_Click"/>
-                        <CheckBox Content="Two-state CheckBox" Checked="Control1_Checked" Unchecked="Control1_Unchecked" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel VerticalAlignment="Center">
+                        <Grid RowDefinitions="Auto,Auto,Auto" Margin="10" Padding="10">
+                            <TextBlock Margin="10" Text="欢迎使用" Style="{StaticResource ScenarioHeaderTextStyle}"/>
+                            <TextBlock Margin="10" Grid.Row="1"  Text="高空抛物检测系统" Style="{StaticResource DescriptionTextStyle}" Foreground="Gray"/>
+                            <Button Margin="10" Grid.Row="2" Width="150" Style="{StaticResource AccentButtonStyle}" Content="开始使用" />
+                        </Grid>
                     </StackPanel>
-                    <StackPanel Grid.Row="1" Spacing ="10" Orientation="Horizontal" VerticalAlignment="Center">
-                        <TextBox Width="50" x:Name="WidthTextBox" InputScope="Number"></TextBox>
-                        <TextBox Width="50" x:Name="HeightTextBox" InputScope="Number"></TextBox>
-                        <Button x:Name="SizeBtn" Click="SizeBtn_Click">Resize window</Button>
-                    </StackPanel>
+                    <Image Grid.Column="1" MaxHeight="500" Source="Assets/Homepage.png" HorizontalAlignment="Right"/>
                 </Grid>
             </StackPanel>
         </ScrollViewer>
-        <InfoBar x:Name="infoBar" Grid.Row="1"/>
+        <Button Grid.Row="1" Width="50" Height="50">
+            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE943;" FontSize="24"/>
+        </Button>
+        <TextBlock Grid.Row="1" Text="主题模式" Style="{StaticResource ScenarioHeaderTextStyle}" HorizontalAlignment="Right"/>
     </Grid>
 </Page>

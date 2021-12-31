@@ -13,6 +13,16 @@
     <DefaultLanguage>zh-Hans</DefaultLanguage>
     <PackageCertificateThumbprint>A711403A900978455A53A7938B21379648E958EB</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+    <DebugType>embedded</DebugType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Optimize>True</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|arm64'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
   <ItemGroup>
     <None Remove="DetectPage.xaml" />

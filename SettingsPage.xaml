@@ -16,8 +16,8 @@
                 <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE790;" Margin="10, 5, 5, 5"/>
-                            <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE790;" Margin="10, 5, 5, 5"/>
+                            <StackPanel Margin="10" Orientation="Vertical">
                                 <TextBlock Text="theme" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
                                 <TextBlock Text="更改应用中显示的颜色" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                             </StackPanel>
@@ -54,7 +54,7 @@
                             <ColumnDefinition Width="5*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE943;" Margin="10, 5, 5, 5"/>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE943;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
                             <TextBlock Text="python" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
                             <TextBlock Text="指定Python解释器的路径，如未设置则使用环境变量中的Python" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>

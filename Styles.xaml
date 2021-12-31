@@ -19,6 +19,10 @@
     <Style x:Key="TagLineTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
     </Style>
 
+    <Style x:Key="DescriptionTextStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
+        <Setter Property="FontSize" Value="22"/>
+    </Style>
+
     <Style x:Key="SampleHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
         <Setter Property="FontSize" Value="28"/>
     </Style>
@@ -44,6 +48,9 @@
     <Style x:Key="BaseMessageStyle" TargetType="TextBlock" BasedOn="{StaticResource BodyTextBlockStyle}">
         <Setter Property="Margin" Value="0,0,0,5"/>
     </Style>
+
+    <Thickness x:Key="PageHeaderDefaultPadding">0</Thickness>
+    <Thickness x:Key="PageHeaderMinimalPadding">-4,0,12,0</Thickness>
 
     <ResourceDictionary.ThemeDictionaries>
         <ResourceDictionary x:Key="Default">

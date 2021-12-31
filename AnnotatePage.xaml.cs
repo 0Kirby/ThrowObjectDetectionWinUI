@@ -4,8 +4,6 @@ using Microsoft.UI;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 
 namespace ThrowObjectDetection
 {
@@ -26,7 +24,7 @@ namespace ThrowObjectDetection
             if (args.DidSizeChange && sender.TitleBar.ExtendsContentIntoTitleBar)
             {
                 // Need to update our drag region if the size of the window changes
-                SetDragRegionForCustomTitleBar(sender);
+                //SetDragRegionForCustomTitleBar(sender);
             }
         }
 
@@ -57,14 +55,14 @@ namespace ThrowObjectDetection
             {
                 _mainAppWindow.Title = "Default titlebar";
             }
-            _mainPage.MyTitleBar.Visibility = Visibility.Collapsed;
+            //_mainPage.MyTitleBar.Visibility = Visibility.Collapsed;
         }
 
         private void ResetTitlebarBtn_Click(object sender, RoutedEventArgs e)
         {
             _mainAppWindow.TitleBar.ResetToDefault();
             _mainAppWindow.Title = Settings.FeatureName;
-            _mainPage.MyTitleBar.Visibility = Visibility.Collapsed;
+            //_mainPage.MyTitleBar.Visibility = Visibility.Collapsed;
         }
 
         private void TitlebarCustomBtn_Click(object sender, RoutedEventArgs e)
@@ -74,7 +72,7 @@ namespace ThrowObjectDetection
             if (AppWindowTitleBar.IsCustomizationSupported() && _mainAppWindow.TitleBar.ExtendsContentIntoTitleBar)
             {
                 // Show the custom titlebar
-                _mainPage.MyTitleBar.Visibility = Visibility.Visible;
+                //_mainPage.MyTitleBar.Visibility = Visibility.Visible;
 
                 // Set Button colors to match the custom titlebar
                 _mainAppWindow.TitleBar.ButtonBackgroundColor = Colors.Blue;
@@ -87,39 +85,40 @@ namespace ThrowObjectDetection
                 _mainAppWindow.TitleBar.ButtonPressedForegroundColor = Colors.White;
 
                 // Set the drag region for the custom TitleBar
-                SetDragRegionForCustomTitleBar(_mainAppWindow);
+                //SetDragRegionForCustomTitleBar(_mainAppWindow);
             }
             else
             {
                 // Bring back the default titlebar
-                _mainPage.MyTitleBar.Visibility = Visibility.Collapsed;
+                //_mainPage.MyTitleBar.Visibility = Visibility.Collapsed;
                 _mainAppWindow.TitleBar.ResetToDefault();
             }
         }
+        /*
+                private void SetDragRegionForCustomTitleBar(AppWindow appWindow)
+                {
+                    //Infer titlebar height
+                    int titleBarHeight = appWindow.TitleBar.Height;
+                    _mainPage.MyTitleBar.Height = titleBarHeight;
 
-        private void SetDragRegionForCustomTitleBar(AppWindow appWindow)
-        {
-            //Infer titlebar height
-            int titleBarHeight = appWindow.TitleBar.Height;
-            _mainPage.MyTitleBar.Height = titleBarHeight;
+                    // Get caption button occlusion information
+                    // Use LeftInset if you've explicitly set your window layout to RTL or if app language is a RTL language
+                    int CaptionButtonOcclusionWidth = appWindow.TitleBar.RightInset;
 
-            // Get caption button occlusion information
-            // Use LeftInset if you've explicitly set your window layout to RTL or if app language is a RTL language
-            int CaptionButtonOcclusionWidth = appWindow.TitleBar.RightInset;
+                    // Define your drag Regions
+                    int windowIconWidthAndPadding = (int)_mainPage.MyWindowIcon.ActualWidth + (int)_mainPage.MyWindowIcon.Margin.Right;
+                    int dragRegionWidth = appWindow.Size.Width - (CaptionButtonOcclusionWidth + windowIconWidthAndPadding);
 
-            // Define your drag Regions
-            int windowIconWidthAndPadding = (int)_mainPage.MyWindowIcon.ActualWidth + (int)_mainPage.MyWindowIcon.Margin.Right;
-            int dragRegionWidth = appWindow.Size.Width - (CaptionButtonOcclusionWidth + windowIconWidthAndPadding);
+                    Windows.Graphics.RectInt32[] dragRects = new Windows.Graphics.RectInt32[] { };
+                    Windows.Graphics.RectInt32 dragRect;
 
-            Windows.Graphics.RectInt32[] dragRects = new Windows.Graphics.RectInt32[] { };
-            Windows.Graphics.RectInt32 dragRect;
+                    dragRect.X = windowIconWidthAndPadding;
+                    dragRect.Y = 0;
+                    dragRect.Height = titleBarHeight;
+                    dragRect.Width = dragRegionWidth;
 
-            dragRect.X = windowIconWidthAndPadding;
-            dragRect.Y = 0;
-            dragRect.Height = titleBarHeight;
-            dragRect.Width = dragRegionWidth;
-
-            appWindow.TitleBar.SetDragRectangles(dragRects.Append(dragRect).ToArray());
-        }
+                    appWindow.TitleBar.SetDragRectangles(dragRects.Append(dragRect).ToArray());
+                }
+        */
     }
 }

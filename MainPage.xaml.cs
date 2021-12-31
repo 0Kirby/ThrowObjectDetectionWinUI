@@ -8,6 +8,7 @@ using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.Foundation.Metadata;
 using Windows.Storage;
 
 namespace ThrowObjectDetection
@@ -15,12 +16,11 @@ namespace ThrowObjectDetection
     public partial class MainPage : Page
     {
         public static MainPage Current;
-        Window window;
+        public static NavigationViewDisplayMode NavDisplayMode;
         public List<Scenario> Scenarios => this.scenarios;
 
         public MainPage()
         {
-            window = MainWindow.Current;
             InitializeComponent();
             this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
 
@@ -28,8 +28,15 @@ namespace ThrowObjectDetection
             // in order to call methods that are in this class.
             Current = this;
 
+            NavView.IsPaneOpen = false;
+            NavView.IsPaneOpen = true;
+
+            NavDisplayMode = NavView.DisplayMode;
+            NavView.DisplayModeChanged += DisplayMode_Changed;
             InitialLocalSettings();
         }
+
+
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
@@ -39,7 +46,7 @@ namespace ThrowObjectDetection
                 {
                     Content = item.Title,
                     Tag = item.ClassName,
-                    Icon = new FontIcon() { FontFamily = new("Segoe MDL2 Assets"), Glyph = item.Icon }
+                    Icon = new FontIcon() { FontFamily = new("Segoe Fluent Icons"), Glyph = item.Icon }
                 });
             }
 
@@ -137,6 +144,7 @@ namespace ThrowObjectDetection
 
         private void MyWindowIcon_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
+            Window window = MainWindow.Window;
             window.Close();
         }
 
@@ -162,5 +170,73 @@ namespace ThrowObjectDetection
             if (pythonInterpreter == null)
                 localSettings.Values["pythonInterpreter"] = "python";
         }
+
+        private void DisplayMode_Changed(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
+        {
+            NavDisplayMode = sender.DisplayMode;
+
+
+        }
+
+        private void NavigationViewControl_PaneClosing(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs args)
+        {
+            UpdateAppTitleMargin(sender);
+        }
+
+        private void NavigationViewControl_PaneOpened(Microsoft.UI.Xaml.Controls.NavigationView sender, object args)
+        {
+            UpdateAppTitleMargin(sender);
+        }
+
+        private void NavigationViewControl_DisplayModeChanged(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewDisplayModeChangedEventArgs args)
+        {
+            Thickness currMargin = AppTitleBar.Margin;
+            if (sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal)
+            {
+                AppTitleBar.Margin = new Thickness((sender.CompactPaneLength * 2), currMargin.Top, currMargin.Right, currMargin.Bottom);
+
+            }
+            else
+            {
+                AppTitleBar.Margin = new Thickness(sender.CompactPaneLength, currMargin.Top, currMargin.Right, currMargin.Bottom);
+            }
+
+            UpdateAppTitleMargin(sender);
+        }
+
+        private void UpdateAppTitleMargin(Microsoft.UI.Xaml.Controls.NavigationView sender)
+        {
+            const int smallLeftIndent = 4, largeLeftIndent = 24;
+
+            if (ApiInformation.IsApiContractPresent("Windows.Foundation.UniversalApiContract", 7))
+            {
+                AppTitle.TranslationTransition = new Vector3Transition();
+
+                if ((sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded && sender.IsPaneOpen) ||
+                         sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal)
+                {
+                    AppTitle.Translation = new System.Numerics.Vector3(smallLeftIndent, 0, 0);
+                }
+                else
+                {
+                    AppTitle.Translation = new System.Numerics.Vector3(largeLeftIndent, 0, 0);
+                }
+            }
+            else
+            {
+                Thickness currMargin = AppTitle.Margin;
+
+                if ((sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Expanded && sender.IsPaneOpen) ||
+                         sender.DisplayMode == Microsoft.UI.Xaml.Controls.NavigationViewDisplayMode.Minimal)
+                {
+                    AppTitle.Margin = new Thickness(smallLeftIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
+                }
+                else
+                {
+                    AppTitle.Margin = new Thickness(largeLeftIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
+                }
+            }
+        }
+
     }
 }
