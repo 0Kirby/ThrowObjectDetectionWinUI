@@ -1,6 +1,8 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+using Microsoft.UI;
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
@@ -9,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Windows.Foundation.Metadata;
+using Windows.Graphics;
 using Windows.Storage;
 
 namespace ThrowObjectDetection
@@ -16,7 +19,6 @@ namespace ThrowObjectDetection
     public partial class MainPage : Page
     {
         public static MainPage Current;
-        public static NavigationViewDisplayMode NavDisplayMode;
         public List<Scenario> Scenarios => this.scenarios;
 
         public MainPage()
@@ -27,16 +29,11 @@ namespace ThrowObjectDetection
             // This is a static public property that allows downstream pages to get a handle to the MainPage instance
             // in order to call methods that are in this class.
             Current = this;
-
             NavView.IsPaneOpen = false;
             NavView.IsPaneOpen = true;
 
-            NavDisplayMode = NavView.DisplayMode;
-            NavView.DisplayModeChanged += DisplayMode_Changed;
             InitialLocalSettings();
         }
-
-
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
@@ -49,7 +46,7 @@ namespace ThrowObjectDetection
                     Icon = new FontIcon() { FontFamily = new("Segoe Fluent Icons"), Glyph = item.Icon }
                 });
             }
-
+           
             NavigationViewItem settings = (NavigationViewItem)NavView.SettingsItem;
             settings.Content = "设置";
 
@@ -171,13 +168,6 @@ namespace ThrowObjectDetection
                 localSettings.Values["pythonInterpreter"] = "python";
         }
 
-        private void DisplayMode_Changed(NavigationView sender, NavigationViewDisplayModeChangedEventArgs args)
-        {
-            NavDisplayMode = sender.DisplayMode;
-
-
-        }
-
         private void NavigationViewControl_PaneClosing(Microsoft.UI.Xaml.Controls.NavigationView sender, Microsoft.UI.Xaml.Controls.NavigationViewPaneClosingEventArgs args)
         {
             UpdateAppTitleMargin(sender);
@@ -236,7 +226,28 @@ namespace ThrowObjectDetection
                     AppTitle.Margin = new Thickness(largeLeftIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
                 }
             }
-        }
 
+            if (sender.DisplayMode != NavigationViewDisplayMode.Minimal)
+            {
+
+                Microsoft.UI.Windowing.AppWindowTitleBar titleBar = MainWindow.AppWindow.TitleBar;
+
+                // 当前控件的实际宽度.
+                double totalSpace = ActualWidth;
+                double height = AppTitleBar.ActualHeight;
+
+                // 搜索框的左边界相对于整个控件左边界的偏移值.
+
+                double dragSpace = AppTitleBar.ActualWidth;
+
+                //bug
+                //double leftOffset = totalSpace - dragSpace;
+
+                double leftOffset = 96;
+                RectInt32 rect = new RectInt32(Convert.ToInt32(leftOffset), 0, Convert.ToInt32(dragSpace), Convert.ToInt32(height));
+
+                titleBar.SetDragRectangles(new RectInt32[] { rect });
+            }
+        }
     }
 }

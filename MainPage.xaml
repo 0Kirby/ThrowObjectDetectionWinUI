@@ -15,7 +15,7 @@
         </Grid.ColumnDefinitions>
         <Border x:Name="AppTitleBar" Background="Transparent" x:FieldModifier="public" Height="48" Canvas.ZIndex="1"
                 VerticalAlignment="Top">
-            <Grid x:Name="AppTitle">
+            <Grid x:Name="AppTitle" x:FieldModifier="public">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>

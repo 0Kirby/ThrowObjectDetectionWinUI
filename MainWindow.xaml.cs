@@ -40,9 +40,6 @@ namespace ThrowObjectDetection
             LoadIcon(hwnd, "Assets/windows-sdk.ico");
             SetWindowSize(hwnd, 1050, 800);
             PlacementCenterWindowInMonitorWin32(hwnd);
-            //SetDragRegionForCustomTitleBar();
-            //UpdateDragRects();
-            AppWindow.Changed += MainAppWindow_Changed;
         }
 
         private unsafe void LoadIcon(HWND hwnd, string iconName)
@@ -119,63 +116,6 @@ namespace ThrowObjectDetection
         {
             this.Close();
         }
-        /*
-        public static void SetDragRegionForCustomTitleBar()
-        {
-            //Infer titlebar height
-            int titleBarHeight = AppWindow.TitleBar.Height;
-            _mainPage = MainPage.Current;
-            //_mainPage.MyTitleBar.Height = titleBarHeight;
 
-            // Get caption button occlusion information
-            // Use LeftInset if you've explicitly set your window layout to RTL or if app language is a RTL language
-            int CaptionButtonOcclusionWidth = AppWindow.TitleBar.RightInset;
-
-            // Define your drag Regions
-            int windowIconWidthAndPadding = (int)_mainPage.MyWindowIcon.ActualWidth + (int)_mainPage.MyTitleBar.Margin.Left;
-            int dragRegionWidth = AppWindow.Size.Width - (CaptionButtonOcclusionWidth + windowIconWidthAndPadding);
-
-            Windows.Graphics.RectInt32[] dragRects = new Windows.Graphics.RectInt32[] { };
-            Windows.Graphics.RectInt32 dragRect;
-
-           
-            dragRect.X = windowIconWidthAndPadding;
-            dragRect.Y = 0;
-            dragRect.Height = 48;
-            dragRect.Width =  dragRegionWidth;
-
-            AppWindow.TitleBar.SetDragRectangles(dragRects.Append(dragRect).ToArray());
-        }
-        */
-        private void MainAppWindow_Changed(AppWindow sender, AppWindowChangedEventArgs args)
-        {
-            if (args.DidSizeChange && sender.TitleBar.ExtendsContentIntoTitleBar)
-            {
-                // Need to update our drag region if the size of the window changes
-                //SetDragRegionForCustomTitleBar();
-                //UpdateDragRects();
-            }
-        }
-        /*
-        private void UpdateDragRects()
-        {
-            var titleBar = AppWindow.TitleBar;
-            _mainPage = MainPage.Current;
-            // 当前控件的实际宽度.
-            var totalSpace = AppWindow.Size.Width;
-
-            var height = 48;
-
-            // 图标的左边界相对于整个控件左边界的偏移值.
-            float iconLeftOffset = _mainPage.MyWindowIcon.ActualOffset.X;
-            //MainPage.myTitleText.Text = iconLeftOffset.ToString();
-            Console.WriteLine(iconLeftOffset.ToString());
-            var dragSpace = totalSpace - iconLeftOffset;
-
-            var Rect = new RectInt32(Convert.ToInt32(iconLeftOffset), 0, Convert.ToInt32(dragSpace), Convert.ToInt32(height));
-
-            titleBar.SetDragRectangles(new RectInt32[] { Rect });
-        }
-        */
     }
 }
