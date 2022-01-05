@@ -1,8 +1,6 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
-using Microsoft.UI;
-using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Input;
@@ -46,7 +44,7 @@ namespace ThrowObjectDetection
                     Icon = new FontIcon() { FontFamily = new("Segoe Fluent Icons"), Glyph = item.Icon }
                 });
             }
-           
+
             NavigationViewItem settings = (NavigationViewItem)NavView.SettingsItem;
             settings.Content = "设置";
 

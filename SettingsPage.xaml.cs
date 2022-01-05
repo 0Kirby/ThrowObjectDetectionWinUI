@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+using Microsoft.UI;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -17,7 +18,6 @@ namespace ThrowObjectDetection
     {
         private Window _mainWindow;
         private HWND _windowHandle;
-        public delegate void DelReadErrOutput(string result);
 
         public SettingsPage()
         {
@@ -56,6 +56,18 @@ namespace ThrowObjectDetection
                 content.RequestedTheme = selectedTheme;
                 Settings.CurrentTheme = content.RequestedTheme;
                 localSettings.Values["themeMode"] = (int)selectedTheme;
+                switch ((int)selectedTheme)
+                {
+                    case 0:
+                        MainWindow.UpdateSystemCaptionButtonColors();
+                        break;
+                    case 1:
+                        MainWindow.AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
+                        break;
+                    case 2:
+                        MainWindow.AppWindow.TitleBar.ButtonForegroundColor = Colors.White;
+                        break;
+                }
             }
         }
 

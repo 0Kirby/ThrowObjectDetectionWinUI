@@ -20,7 +20,7 @@
 
                     <StackPanel VerticalAlignment="Center">
                         <Grid RowDefinitions="Auto,Auto,Auto" Margin="10" Padding="10">
-                            <TextBlock Margin="10" Text="欢迎使用" Style="{StaticResource ScenarioHeaderTextStyle}"/>
+                            <TextBlock Margin="10" Text="欢迎使用" Style="{StaticResource ScenarioPageTextStyle}"/>
                             <TextBlock Margin="10" Grid.Row="1"  Text="高空抛物检测系统" Style="{StaticResource DescriptionTextStyle}" Foreground="Gray"/>
                             <Button Margin="10" Grid.Row="2" Width="150" Style="{StaticResource AccentButtonStyle}" Content="开始使用" />
                         </Grid>
@@ -29,9 +29,16 @@
                 </Grid>
             </StackPanel>
         </ScrollViewer>
-        <Button Grid.Row="1" Width="50" Height="50">
-            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE943;" FontSize="24"/>
+        <Button Grid.Row="1" Width="40" Height="40" IsEnabled="False">
+            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE80F;" FontSize="16"/>
         </Button>
-        <TextBlock Grid.Row="1" Text="主题模式" Style="{StaticResource ScenarioHeaderTextStyle}" HorizontalAlignment="Right"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Width="40" Height="40" Margin="10" IsEnabled="False">
+                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE76B;" FontSize="16"/>
+            </Button>
+            <Button Width="40" Height="40">
+                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE76C;" FontSize="16"/>
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>

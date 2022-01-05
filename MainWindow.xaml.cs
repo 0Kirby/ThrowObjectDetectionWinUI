@@ -7,6 +7,8 @@ using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Input;
 using System.Runtime.InteropServices;
+using Windows.Storage;
+using Windows.UI.ViewManagement;
 using Windows.Win32.Foundation;
 using Windows.Win32.Graphics.Gdi;
 using Windows.Win32.UI.WindowsAndMessaging;
@@ -21,6 +23,7 @@ namespace ThrowObjectDetection
         public static Window Window;
         public string WindowTitle;
         public static MainPage _mainPage;
+        private static UISettings uiSettings;
 
         public MainWindow()
         {
@@ -30,16 +33,37 @@ namespace ThrowObjectDetection
             AppWindow = AppWindowExtensions.GetAppWindow(this);
             AppWindow.TitleBar.ExtendsContentIntoTitleBar = true;
             AppWindow.TitleBar.ButtonBackgroundColor = Colors.Transparent;
-            AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
+
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            int savedThemeMode = (int)localSettings.Values["themeMode"];
+
+            switch (savedThemeMode)
+            {
+                case 0:
+                    UpdateSystemCaptionButtonColors();
+                    break;
+                case 1:
+                    AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
+                    break;
+                case 2:
+                    AppWindow.TitleBar.ButtonForegroundColor = Colors.White;
+                    break;
+            }
+
+            //MainPage
             AppWindow.TitleBar.ButtonInactiveBackgroundColor = Colors.Transparent;
 
             Window = this;
+
             Title = Settings.FeatureName;
             HWND hwnd = (HWND)WinRT.Interop.WindowNative.GetWindowHandle(this);
             dispatcherQueue = DispatcherQueue.GetForCurrentThread();
             LoadIcon(hwnd, "Assets/windows-sdk.ico");
             SetWindowSize(hwnd, 1050, 800);
             PlacementCenterWindowInMonitorWin32(hwnd);
+
+            uiSettings = new UISettings();
+            uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
         }
 
         private unsafe void LoadIcon(HWND hwnd, string iconName)
@@ -115,6 +139,29 @@ namespace ThrowObjectDetection
         private void MyWindowIcon_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private static void UiSettings_ColorValuesChanged(UISettings sender, object args)
+        {
+            // Make sure we have a reference to our window so we dispatch a UI change
+            // Dispatch on UI thread so that we have a current appbar to access and change
+            dispatcherQueue.TryEnqueue(() =>
+            {
+                UpdateSystemCaptionButtonColors();
+            });
+
+        }
+
+        public static void UpdateSystemCaptionButtonColors()
+        {
+            ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+            int savedThemeMode = (int)localSettings.Values["themeMode"];
+            var themeMode = Application.Current.RequestedTheme;
+            if (savedThemeMode == 0)
+                if (themeMode == ApplicationTheme.Dark)
+                    AppWindow.TitleBar.ButtonForegroundColor = Colors.White;
+                else
+                    AppWindow.TitleBar.ButtonForegroundColor = Colors.Black;
         }
 
     }

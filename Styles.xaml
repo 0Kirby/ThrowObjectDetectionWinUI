@@ -39,6 +39,10 @@
         <Setter Property="FontWeight" Value="Normal"/>
     </Style>
     
+    <Style x:Key="ScenarioPageTextStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
+        <Setter Property="FontSize" Value="36"/>
+    </Style>
+
     <Style x:Key="ScenarioHeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource TitleTextBlockStyle}">
     </Style>
 

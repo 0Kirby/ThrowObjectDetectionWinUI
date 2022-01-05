@@ -33,20 +33,18 @@
                 Style="{StaticResource CaptionTextBlockStyle}" />
             </Grid>
         </Border>
-        <NavigationView  x:Name="NavView"
-                         Loaded="NavView_Loaded"
-                         ItemInvoked="NavView_ItemInvoked"  PaneOpening="NavigationViewControl_PaneOpened"
-                         PaneClosing="NavigationViewControl_PaneClosing" DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
-                         BackRequested="NavView_BackRequested" AlwaysShowHeader="True" Header=" " IsTabStop="False"  IsTitleBarAutoPaddingEnabled="False"
-                         VerticalAlignment="Stretch" Canvas.ZIndex="0">
+        <NavigationView x:Name="NavView"
+                        Loaded="NavView_Loaded"
+                        ItemInvoked="NavView_ItemInvoked"  PaneOpening="NavigationViewControl_PaneOpened"
+                        PaneClosing="NavigationViewControl_PaneClosing" DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
+                        BackRequested="NavView_BackRequested" AlwaysShowHeader="True" Header=" " IsTabStop="False"  IsTitleBarAutoPaddingEnabled="False"
+                        VerticalAlignment="Stretch" Canvas.ZIndex="0">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader x:Name="MainPagesHeader" Content="功能"/>
             </NavigationView.MenuItems>
 
             <Grid RowDefinitions="*,Auto">
-                <ScrollViewer>
-                    <Frame Padding="50, 50, 50, 20" x:Name="ContentFrame" Navigated="ContentFrame_Navigated" />
-                </ScrollViewer>
+                <Frame Padding="50, 50, 50, 20" x:Name="ContentFrame" Navigated="ContentFrame_Navigated" />
             </Grid>
         </NavigationView>
     </Grid>
