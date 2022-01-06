@@ -35,14 +35,20 @@ namespace ThrowObjectDetection
 
         private void NavView_Loaded(object sender, RoutedEventArgs e)
         {
+            string lastTitle = "";
             foreach (Scenario item in scenarios)
             {
+                Visibility itemVisibility = Visibility.Visible;
+                if (lastTitle == item.Title)
+                    itemVisibility = Visibility.Collapsed;
                 NavView.MenuItems.Add(new NavigationViewItem
                 {
                     Content = item.Title,
                     Tag = item.ClassName,
-                    Icon = new FontIcon() { FontFamily = new("Segoe Fluent Icons"), Glyph = item.Icon }
+                    Icon = new FontIcon() { FontFamily = new("Segoe Fluent Icons"), Glyph = item.Icon },
+                    Visibility = itemVisibility
                 });
+                lastTitle = item.Title;
             }
 
             NavigationViewItem settings = (NavigationViewItem)NavView.SettingsItem;
@@ -87,7 +93,25 @@ namespace ThrowObjectDetection
             }
         }
 
-        private void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
+        public void NavView_SubPage_Navigate(string navItemTag, Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo transitionInfo)
+        {
+            Type page;
+            page = Type.GetType(navItemTag);
+
+            // Get the page type before navigation so you can prevent duplicate
+            // entries in the backstack.
+            var preNavPageType = ContentFrame.CurrentSourcePageType;
+
+            // Only navigate if the selected page isn't currently loaded.
+            if ((page is not null) && !Type.Equals(preNavPageType, page))
+            {
+                GC.Collect();
+                ContentFrame.Navigate(page, null, transitionInfo);
+                GC.Collect();
+            }
+        }
+
+        public void NavView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
         {
             if (ContentFrame.CanGoBack)
             {
@@ -127,10 +151,12 @@ namespace ThrowObjectDetection
             {
                 var item = scenarios.First(p => p.ClassName == e.SourcePageType.FullName);
                 var menuItems = NavView.MenuItems;
-
-                NavView.SelectedItem = NavView.MenuItems
+                var menuItem = NavView.MenuItems
                     .OfType<NavigationViewItem>()
                     .First(n => n.Tag.Equals(item.ClassName));
+
+                if (menuItem.Visibility == Visibility.Visible)
+                    NavView.SelectedItem = menuItem;
 
                 NavView.Header =
                     ((NavigationViewItem)NavView.SelectedItem)?.Content?.ToString();

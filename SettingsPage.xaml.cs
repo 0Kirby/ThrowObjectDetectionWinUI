@@ -92,7 +92,7 @@ namespace ThrowObjectDetection
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
             Process p = new Process();
             p.StartInfo.WorkingDirectory = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5";
-            p.StartInfo.FileName = (String)localSettings.Values["pythonInterpreter"]; //虚拟环境中python的安装路径
+            p.StartInfo.FileName = (string)localSettings.Values["pythonInterpreter"]; //虚拟环境中python的安装路径
             //p.StartInfo.Arguments = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5\models\yolo.py --cfg C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5\models\yolov5n6-C3TR-CBAM-P2.yaml";
 
             // Get the path to the app's Assets folder.

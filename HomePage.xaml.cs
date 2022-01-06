@@ -14,7 +14,7 @@ namespace ThrowObjectDetection
 
         private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
-            MainPage.Current.NavView_Navigate("ThrowObjectDetection.AnnotatePage", new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo());
+            MainPage.Current.NavView_Navigate("ThrowObjectDetection.AnnotatePage1", new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo());
         }
     }
 }

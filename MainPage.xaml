@@ -35,9 +35,9 @@
         </Border>
         <NavigationView x:Name="NavView"
                         Loaded="NavView_Loaded"
-                        ItemInvoked="NavView_ItemInvoked"  PaneOpening="NavigationViewControl_PaneOpened"
+                        ItemInvoked="NavView_ItemInvoked" PaneOpening="NavigationViewControl_PaneOpened"
                         PaneClosing="NavigationViewControl_PaneClosing" DisplayModeChanged="NavigationViewControl_DisplayModeChanged"
-                        BackRequested="NavView_BackRequested" AlwaysShowHeader="True" Header=" " IsTabStop="False"  IsTitleBarAutoPaddingEnabled="False"
+                        BackRequested="NavView_BackRequested" AlwaysShowHeader="True" Header=" " IsTabStop="False" IsTitleBarAutoPaddingEnabled="False"
                         VerticalAlignment="Stretch" Canvas.ZIndex="0">
             <NavigationView.MenuItems>
                 <NavigationViewItemHeader x:Name="MainPagesHeader" Content="功能"/>
