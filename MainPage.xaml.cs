@@ -60,7 +60,7 @@ namespace ThrowObjectDetection
             }
         }
 
-        private void NavView_Navigate(string navItemTag, Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo transitionInfo)
+        public void NavView_Navigate(string navItemTag, Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo transitionInfo)
         {
             Type page;
 

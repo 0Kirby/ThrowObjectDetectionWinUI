@@ -36,7 +36,7 @@
             <Button Width="40" Height="40" Margin="10" IsEnabled="False">
                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE76B;" FontSize="16"/>
             </Button>
-            <Button Width="40" Height="40">
+            <Button Width="40" Height="40" Click="RightButton_Click">
                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE76C;" FontSize="16"/>
             </Button>
         </StackPanel>

@@ -12,5 +12,9 @@ namespace ThrowObjectDetection
             this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
 
+        private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            MainPage.Current.NavView_Navigate("ThrowObjectDetection.AnnotatePage", new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo());
+        }
     }
 }
