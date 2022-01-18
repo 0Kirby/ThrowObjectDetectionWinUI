@@ -16,8 +16,8 @@ namespace ThrowObjectDetection
 {
     public partial class SettingsPage : Page
     {
-        private Window _mainWindow;
-        private HWND _windowHandle;
+        private readonly Window _mainWindow;
+        private readonly HWND _windowHandle;
 
         public SettingsPage()
         {
@@ -25,7 +25,7 @@ namespace ThrowObjectDetection
             this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
 
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-            PythonPath.Text = (String)localSettings.Values["pythonInterpreter"];
+            PythonPath.Text = (string)localSettings.Values["pythonInterpreter"];
             _mainWindow = MainWindow.Window;
             _windowHandle = (HWND)WinRT.Interop.WindowNative.GetWindowHandle(_mainWindow);
 
@@ -34,7 +34,7 @@ namespace ThrowObjectDetection
         private void ErrorDataReceived(object sender, DataReceivedEventArgs e)
         {
             if (e.Data != null)
-                MainWindow.dispatcherQueue.TryEnqueue(() =>
+                MainWindow.MyDispatcherQueue.TryEnqueue(() =>
                 {
                     SettingsText.Text += e.Data + "\n";
                 });
@@ -73,7 +73,7 @@ namespace ThrowObjectDetection
 
         private async void BrowseBtn_Click(object sender, RoutedEventArgs e)
         {
-            FileOpenPicker filePicker = new FileOpenPicker();
+            FileOpenPicker filePicker = new();
             filePicker.FileTypeFilter.Add(".exe");
             WinRT.Interop.InitializeWithWindow.Initialize(filePicker, _windowHandle);
             var file = await filePicker.PickSingleFileAsync();
@@ -90,8 +90,8 @@ namespace ThrowObjectDetection
         {
             SettingsText.Text = "";
             ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-            Process p = new Process();
-            p.StartInfo.WorkingDirectory = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5";
+            Process p = new();
+            //p.StartInfo.WorkingDirectory = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5";
             p.StartInfo.FileName = (string)localSettings.Values["pythonInterpreter"]; //虚拟环境中python的安装路径
             //p.StartInfo.Arguments = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5\models\yolo.py --cfg C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5\models\yolov5n6-C3TR-CBAM-P2.yaml";
 

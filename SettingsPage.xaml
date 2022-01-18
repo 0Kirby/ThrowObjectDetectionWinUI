@@ -70,7 +70,7 @@
                         <Button Margin="0, 5, 0, 0" Click="TestBtn_Click" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource AccentButtonStyle}" Content="测试解释器" HorizontalAlignment="Center"/>
                     </Grid>
                 </Border>
-                <TextBlock Text="ThrowObjectDetection-WinUI v0.5.0" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                <TextBlock Text="ThrowObjectDetection-WinUI v0.5.1" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
                 <TextBlock Text="&#xA9; 0Kirby. All rights reserved." Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
             </StackPanel>
         </ScrollViewer>

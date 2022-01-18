@@ -5,7 +5,6 @@ using Microsoft.UI;
 using Microsoft.UI.Dispatching;
 using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Input;
 using System.Runtime.InteropServices;
 using Windows.Storage;
 using Windows.UI.ViewManagement;
@@ -18,12 +17,17 @@ namespace ThrowObjectDetection
 {
     public partial class MainWindow : Window
     {
-        public static AppWindow AppWindow;
-        public static DispatcherQueue dispatcherQueue;
-        public static Window Window;
-        public string WindowTitle;
-        public static MainPage _mainPage;
+        private static AppWindow appWindow;
+        private static DispatcherQueue dispatcherQueue;
+        private static Window window;
+        private static int cxScreen = GetSystemMetrics(SYSTEM_METRICS_INDEX.SM_CXSCREEN); //Get Resolution X
         private static UISettings uiSettings;
+        public string WindowTitle;
+
+        public static AppWindow AppWindow { get => appWindow; set => appWindow = value; }
+        public static DispatcherQueue MyDispatcherQueue { get => dispatcherQueue; set => dispatcherQueue = value; }
+        public static Window Window { get => window; set => window = value; }
+        public static int CxScreen { get => cxScreen; set => cxScreen = value; }
 
         public MainWindow()
         {
@@ -57,7 +61,7 @@ namespace ThrowObjectDetection
 
             Title = Settings.FeatureName;
             HWND hwnd = (HWND)WinRT.Interop.WindowNative.GetWindowHandle(this);
-            dispatcherQueue = DispatcherQueue.GetForCurrentThread();
+            MyDispatcherQueue = DispatcherQueue.GetForCurrentThread();
             LoadIcon(hwnd, "Assets/windows-sdk.ico");
             SetWindowSize(hwnd, 1050, 800);
             PlacementCenterWindowInMonitorWin32(hwnd);
@@ -94,7 +98,7 @@ namespace ThrowObjectDetection
             }
         }
 
-        private void SetWindowSize(HWND hwnd, int width, int height)
+        private static void SetWindowSize(HWND hwnd, int width, int height)
         {
             // Win32 uses pixels and WinUI 3 uses effective pixels, so you should apply the DPI scale factor
             uint dpi = GetDpiForWindow(hwnd);
@@ -105,10 +109,9 @@ namespace ThrowObjectDetection
             SetWindowPos(hwnd, default, 0, 0, width, height, SET_WINDOW_POS_FLAGS.SWP_NOMOVE | SET_WINDOW_POS_FLAGS.SWP_NOZORDER);
         }
 
-        private void PlacementCenterWindowInMonitorWin32(HWND hwnd)
+        private static void PlacementCenterWindowInMonitorWin32(HWND hwnd)
         {
-            RECT rc;
-            GetWindowRect(hwnd, out rc);
+            GetWindowRect(hwnd, out RECT rc);
             ClipOrCenterRectToMonitorWin32(ref rc);
             SetWindowPos(hwnd, default, rc.left, rc.top, 0, 0,
                          SET_WINDOW_POS_FLAGS.SWP_NOSIZE |
@@ -116,7 +119,7 @@ namespace ThrowObjectDetection
                          SET_WINDOW_POS_FLAGS.SWP_NOACTIVATE);
         }
 
-        private void ClipOrCenterRectToMonitorWin32(ref RECT prc)
+        private static void ClipOrCenterRectToMonitorWin32(ref RECT prc)
         {
             HMONITOR hMonitor;
             RECT rc;
@@ -124,7 +127,7 @@ namespace ThrowObjectDetection
             int h = prc.bottom - prc.top;
 
             hMonitor = MonitorFromRect(prc, MONITOR_FROM_FLAGS.MONITOR_DEFAULTTONEAREST);
-            MONITORINFO mi = new MONITORINFO();
+            MONITORINFO mi = new();
             mi.cbSize = (uint)Marshal.SizeOf<MONITORINFO>();
 
             GetMonitorInfo(hMonitor, ref mi);
@@ -136,7 +139,7 @@ namespace ThrowObjectDetection
             prc.bottom = prc.top + h;
         }
 
-        private void MyWindowIcon_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private void MyWindowIcon_DoubleTapped()
         {
             this.Close();
         }
@@ -145,7 +148,7 @@ namespace ThrowObjectDetection
         {
             // Make sure we have a reference to our window so we dispatch a UI change
             // Dispatch on UI thread so that we have a current appbar to access and change
-            dispatcherQueue.TryEnqueue(() =>
+            MyDispatcherQueue.TryEnqueue(() =>
             {
                 UpdateSystemCaptionButtonColors();
             });

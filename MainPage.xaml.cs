@@ -3,7 +3,6 @@
 
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
@@ -16,8 +15,10 @@ namespace ThrowObjectDetection
 {
     public partial class MainPage : Page
     {
-        public static MainPage Current;
+        private static MainPage current;
         public List<Scenario> Scenarios => this.scenarios;
+
+        public static MainPage Current { get => current; set => current = value; }
 
         public MainPage()
         {
@@ -163,7 +164,7 @@ namespace ThrowObjectDetection
             }
         }
 
-        private void MyWindowIcon_DoubleTapped(object sender, DoubleTappedRoutedEventArgs e)
+        private static void MyWindowIcon_DoubleTapped()
         {
             Window window = MainWindow.Window;
             window.Close();
@@ -257,18 +258,20 @@ namespace ThrowObjectDetection
                 Microsoft.UI.Windowing.AppWindowTitleBar titleBar = MainWindow.AppWindow.TitleBar;
 
                 // 当前控件的实际宽度.
-                double totalSpace = ActualWidth;
+                //double totalSpace = ActualWidth;
                 double height = AppTitleBar.ActualHeight;
 
                 // 搜索框的左边界相对于整个控件左边界的偏移值.
 
-                double dragSpace = AppTitleBar.ActualWidth;
+                //double dragSpace = AppTitleBar.ActualWidth;
+
+                int dragSpace = MainWindow.CxScreen;
 
                 //bug
                 //double leftOffset = totalSpace - dragSpace;
 
                 double leftOffset = 96;
-                RectInt32 rect = new RectInt32(Convert.ToInt32(leftOffset), 0, Convert.ToInt32(dragSpace), Convert.ToInt32(height));
+                RectInt32 rect = new(Convert.ToInt32(leftOffset), 0, Convert.ToInt32(dragSpace), Convert.ToInt32(height));
 
                 titleBar.SetDragRectangles(new RectInt32[] { rect });
             }

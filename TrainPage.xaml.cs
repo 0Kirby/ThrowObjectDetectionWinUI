@@ -17,7 +17,7 @@ namespace ThrowObjectDetection
     /// </summary>
     public sealed partial class TrainPage : Page
     {
-        private AppWindow _mainAppWindow = MainWindow.AppWindow;
+        private readonly AppWindow _mainAppWindow = MainWindow.AppWindow;
         public TrainPage()
         {
             this.InitializeComponent();
@@ -63,26 +63,13 @@ namespace ThrowObjectDetection
             // Bail out if we don't have an AppWindow object.
             if (_mainAppWindow != null)
             {
-
-                AppWindowPresenterKind newPresenterKind;
-                switch (sender.As<Button>().Name)
+                var newPresenterKind = sender.As<Button>().Name switch
                 {
-                    case "CompactoverlaytBtn":
-                        newPresenterKind = AppWindowPresenterKind.CompactOverlay;
-                        break;
-
-                    case "FullscreenBtn":
-                        newPresenterKind = AppWindowPresenterKind.FullScreen;
-                        break;
-
-                    case "OverlappedBtn":
-                        newPresenterKind = AppWindowPresenterKind.Overlapped;
-                        break;
-
-                    default:
-                        newPresenterKind = AppWindowPresenterKind.Default;
-                        break;
-                }
+                    "CompactoverlaytBtn" => AppWindowPresenterKind.CompactOverlay,
+                    "FullscreenBtn" => AppWindowPresenterKind.FullScreen,
+                    "OverlappedBtn" => AppWindowPresenterKind.Overlapped,
+                    _ => AppWindowPresenterKind.Default,
+                };
 
                 // If the same presenter button was pressed as the mode we're in, toggle the window back to Default.
                 if (newPresenterKind == _mainAppWindow.Presenter.Kind)
