@@ -26,7 +26,9 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="AnnotatePage2.xaml" />
-    <None Remove="DetectPage.xaml" />
+    <None Remove="AnnotatePage3.xaml" />
+    <None Remove="AnnotatePage4.xaml" />
+    <None Remove="DetectPage1.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -55,12 +57,22 @@
     <ProjectCapability Include="Msix" />
   </ItemGroup>
   <ItemGroup>
+    <Page Update="AnnotatePage4.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="AnnotatePage3.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
     <Page Update="AnnotatePage2.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="DetectPage.xaml">
+    <Page Update="DetectPage1.xaml">
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>

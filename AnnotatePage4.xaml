@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="ThrowObjectDetection.AnnotatePage2"
+    x:Class="ThrowObjectDetection.AnnotatePage4"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ThrowObjectDetection"
@@ -17,14 +17,13 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel VerticalAlignment="Center">
-                        <Grid RowDefinitions="Auto, Auto, Auto, Auto" Margin="10" Padding="10">
-                            <TextBlock Margin="10" Text="基础设置" Style="{StaticResource ScenarioPageTextStyle}"/>
-                            <TextBlock Margin="10" Grid.Row="1" Text="更改图片和标签路径" Style="{StaticResource DescriptionTextStyle}" Foreground="Gray"/>
-                            <TextBlock Margin="10" Grid.Row="2" Text="设置YOLO标签格式" Style="{StaticResource DescriptionTextStyle}" Foreground="Gray"/>
-                            <Button Margin="10" Grid.Row="3" Width="150" Style="{StaticResource AccentButtonStyle}" Content="打开labelImg" Click="OpenButton_Click"/>
+                        <Grid RowDefinitions="Auto, Auto, Auto" Margin="10" Padding="10">
+                            <TextBlock Margin="10" Text="完成标注" Style="{StaticResource ScenarioPageTextStyle}"/>
+                            <TextBlock Margin="10" Grid.Row="1" Text="完成一张图片的标注" Style="{StaticResource DescriptionTextStyle}" Foreground="Gray"/>
+                            <Button Margin="10" Grid.Row="2" Width="150" Style="{StaticResource AccentButtonStyle}" Content="打开labelImg" Click="OpenButton_Click"/>
                         </Grid>
                     </StackPanel>
-                    <Image Grid.Column="1" MaxHeight="500" Source="Assets/AnnotatePage2.png" HorizontalAlignment="Right"/>
+                    <Image Grid.Column="1" MaxHeight="500" Source="Assets/AnnotatePage4.png" HorizontalAlignment="Right"/>
                 </Grid>
             </StackPanel>
         </ScrollViewer>
@@ -35,7 +34,7 @@
             <Button Width="40" Height="40" Margin="10" Click="LeftButton_Click">
                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE76B;" FontSize="16"/>
             </Button>
-            <Button Width="40" Height="40" Click="RightButton_Click">
+            <Button Width="40" Height="40" IsEnabled="False">
                 <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE76C;" FontSize="16"/>
             </Button>
         </StackPanel>

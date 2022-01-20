@@ -20,8 +20,10 @@ namespace ThrowObjectDetection
             new Scenario() { Title = "主页", Icon = "\uF1AD", ClassName = typeof(HomePage).FullName },
             new Scenario() { Title = "标注", Icon = "\uE70F", ClassName = typeof(AnnotatePage1).FullName },
             new Scenario() { Title = "标注", Icon = "\uE70F", ClassName = typeof(AnnotatePage2).FullName },
-            new Scenario() { Title = "训练", Icon = "\uE945", ClassName = typeof(TrainPage).FullName },
-            new Scenario() { Title = "检测", Icon = "\uE8A3", ClassName = typeof(DetectPage).FullName }
+            new Scenario() { Title = "标注", Icon = "\uE70F", ClassName = typeof(AnnotatePage3).FullName },
+            new Scenario() { Title = "标注", Icon = "\uE70F", ClassName = typeof(AnnotatePage4).FullName },
+            new Scenario() { Title = "训练", Icon = "\uE945", ClassName = typeof(TrainPage1).FullName },
+            new Scenario() { Title = "检测", Icon = "\uE8A3", ClassName = typeof(DetectPage1).FullName }
         };
     }
 

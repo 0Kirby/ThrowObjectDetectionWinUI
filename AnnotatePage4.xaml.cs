@@ -1,23 +1,32 @@
-﻿// Copyright (c) Microsoft Corporation.
-// Licensed under the MIT License.
-using Microsoft.UI.Xaml.Controls;
+﻿using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Diagnostics;
 using Windows.Storage;
 
+// To learn more about WinUI, the WinUI project structure,
+// and more about our project templates, see: http://aka.ms/winui-project-info.
+
 namespace ThrowObjectDetection
 {
-    public partial class AnnotatePage1 : Page
+    /// <summary>
+    /// An empty page that can be used on its own or navigated to within a Frame.
+    /// </summary>
+    public sealed partial class AnnotatePage4 : Page
     {
-        public AnnotatePage1()
+        public AnnotatePage4()
         {
             this.InitializeComponent();
             this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         }
 
-        private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        private void HomeButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
         {
-            MainPage.Current.NavView_SubPage_Navigate("ThrowObjectDetection.AnnotatePage2", new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo());
+            MainPage.Current.NavView_SubPage_Navigate("ThrowObjectDetection.AnnotatePage1", new Microsoft.UI.Xaml.Media.Animation.EntranceNavigationTransitionInfo());
+        }
+
+        private void LeftButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+        {
+            MainPage.Current.NavView_BackRequested(null, null);
         }
 
         private async void OpenButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
@@ -29,7 +38,7 @@ namespace ThrowObjectDetection
             if (lastIndex == -1)
                 lastIndex = 0;
             string substr = interpreterPath[..lastIndex];
-            p.StartInfo.FileName = substr + "labelimg";
+            p.StartInfo.FileName = substr + "labelimg"; //虚拟环境中python的安装路径
             p.StartInfo.UseShellExecute = false;
             p.StartInfo.CreateNoWindow = true;
             try
