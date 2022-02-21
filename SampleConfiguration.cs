@@ -23,6 +23,7 @@ namespace ThrowObjectDetection
             new Scenario() { Title = "标注", Icon = "\uE70F", ClassName = typeof(AnnotatePage3).FullName },
             new Scenario() { Title = "标注", Icon = "\uE70F", ClassName = typeof(AnnotatePage4).FullName },
             new Scenario() { Title = "训练", Icon = "\uE945", ClassName = typeof(TrainPage1).FullName },
+            new Scenario() { Title = "训练", Icon = "\uE945", ClassName = typeof(TrainPage2).FullName },
             new Scenario() { Title = "检测", Icon = "\uE8A3", ClassName = typeof(DetectPage1).FullName }
         };
     }
