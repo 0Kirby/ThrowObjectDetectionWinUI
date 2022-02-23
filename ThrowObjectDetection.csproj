@@ -31,6 +31,7 @@
     <None Remove="AnnotatePage4.xaml" />
     <None Remove="App.xaml" />
     <None Remove="DetectPage1.xaml" />
+    <None Remove="DetectPage2.xaml" />
     <None Remove="HomePage.xaml" />
     <None Remove="MainPage.xaml" />
     <None Remove="MainWindow.xaml" />
@@ -64,6 +65,11 @@
        package has not yet been restored -->
   <ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnablePreviewMsixTooling)'=='true'">
     <ProjectCapability Include="Msix" />
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="DetectPage2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="TrainPage2.xaml">
@@ -130,4 +136,5 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties properties_4launchsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 </Project>

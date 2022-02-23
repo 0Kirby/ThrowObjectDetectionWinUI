@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="ThrowObjectDetection.TrainPage2"
+    x:Class="ThrowObjectDetection.DetectPage2"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ThrowObjectDetection"
@@ -41,13 +41,13 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE80A;" Margin="10, 5, 5, 5"/>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE762;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
-                            <TextBlock Text="batch" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="每次迭代的图片张数" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            <TextBlock Text="conf-thres" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="置信度阈值，大于该值即画出锚框" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBox x:Name="batch" PlaceholderText="64" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center"/>
+                            <TextBox x:Name="confThres" PlaceholderText="0.25" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Grid>
                 </Border>
@@ -61,43 +61,17 @@
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xEAFC;" Margin="10, 5, 5, 5"/>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8B3;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
-                            <TextBlock Text="epoch" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="训练总轮数" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            <TextBlock Text="iou-thres" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="交并比阈值，大于该值将进行锚框合并" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <TextBox x:Name="epoch" PlaceholderText="300" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center"/>
+                            <TextBox x:Name="epoch" PlaceholderText="0.45" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center"/>
                         </StackPanel>
                     </Grid>
                 </Border>
-                <TextBlock Text="配置文件" Style="{StaticResource SettingHeaderTextStyle}"/>
-                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE7C3;" Margin="10, 5, 5, 5"/>
-                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
-                            <TextBlock Text="cfg" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="改进YOLOv5的高空抛物目标检测算法配置文件" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <ComboBox PlaceholderText="配置文件" Width="200" VerticalAlignment="Center">
-                                <x:String>ThrowObject-YOLO</x:String>
-                                <x:String>YOLOv5</x:String>
-                                <x:String>+FCBAM</x:String>
-                                <x:String>+C3Trans</x:String>
-                                <x:String>+P2</x:String>
-                            </ComboBox>
-                        </StackPanel>
-                    </Grid>
-                </Border>
+                <TextBlock Text="权重文件" Style="{StaticResource SettingHeaderTextStyle}"/>
                 <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -111,20 +85,75 @@
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE724;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
                             <TextBlock Text="weights" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="网络规模，n-微型，s-小型，m-中型，l-大型，x-巨型" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            <TextBlock Text="训练好的权重文件.pt的路径" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <ComboBox PlaceholderText="网络规模" Width="200" VerticalAlignment="Center">
-                                <x:String>Nano</x:String>
-                                <x:String>Small</x:String>
-                                <x:String>Medium</x:String>
-                                <x:String>Large</x:String>
-                                <x:String>XLarge</x:String>
-                            </ComboBox>
+                            <Button Content="选取文件" Margin="5"/>
                         </StackPanel>
                     </Grid>
                 </Border>
-                <TextBlock Text="多卡训练" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <TextBlock Text="附加配置" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xECAD;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="augment" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="增强检测" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <ToggleSwitch x:Name="augment" VerticalAlignment="Center" Margin="0, 0, -50, 0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE799;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="half" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="使用半精度浮点格式FP16进行检测" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <ToggleSwitch x:Name="half" VerticalAlignment="Center" Margin="0, 0, -50, 0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE74E;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="save-conf" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="将置信度和锚框保存到txt文件" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <ToggleSwitch x:Name="saveConf" VerticalAlignment="Center" Margin="0, 0, -50, 0"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <TextBlock Text="多卡检测" Style="{StaticResource SettingHeaderTextStyle}"/>
                 <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -138,7 +167,7 @@
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xEC48;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
                             <TextBlock Text="cpu-only" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="仅使用CPU进行训练" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            <TextBlock Text="仅使用CPU进行检测" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <ToggleSwitch x:Name="cpuOnly" VerticalAlignment="Center" Margin="0, 0, -50, 0"/>
@@ -165,7 +194,31 @@
                         </StackPanel>
                     </Grid>
                 </Border>
-                <TextBlock Text="数据集路径" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <TextBlock Text="检测类型" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8B9;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="type" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="单张检测可实时显示检测结果，批量检测将检测生成的图片保存" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Margin="10, 5, 5, 5">
+                            <RadioButtons>
+                                <RadioButton Content="单张检测"/>
+                                <RadioButton Content="批量检测"/>
+                            </RadioButtons>
+                        </StackPanel>
+                    </Grid>
+                </Border>
                 <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -178,59 +231,26 @@
                         </Grid.ColumnDefinitions>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8B7;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
-                            <TextBlock Text="data" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="指定数据集files文件夹的路径，请按照左图组织文件" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            <TextBlock Text="source" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="选择批量检测时需要指定待检测图片文件夹的路径" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Content="选取文件夹" Margin="5"/>
                         </StackPanel>
                     </Grid>
                 </Border>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0, 0, 5, 0" Padding="5" CornerRadius="5">
-                        <TreeView>
-                            <TreeView.RootNodes>
-                                <TreeViewNode Content="files" IsExpanded="True">
-                                    <TreeViewNode.Children>
-                                        <TreeViewNode Content="images" IsExpanded="True">
-                                            <TreeViewNode.Children>
-                                                <TreeViewNode Content="train" IsExpanded="True"/>
-                                                <TreeViewNode Content="val" IsExpanded="True"/>
-                                                <TreeViewNode Content="test" IsExpanded="True"/>
-                                            </TreeViewNode.Children>
-                                        </TreeViewNode>
-                                        <TreeViewNode Content="labels" IsExpanded="True">
-                                            <TreeViewNode.Children>
-                                                <TreeViewNode Content="train" IsExpanded="True"/>
-                                                <TreeViewNode Content="val" IsExpanded="True"/>
-                                                <TreeViewNode Content="test" IsExpanded="True"/>
-                                            </TreeViewNode.Children>
-                                        </TreeViewNode>
-                                    </TreeViewNode.Children>
-                                </TreeViewNode>
-                            </TreeView.RootNodes>
-                        </TreeView>
-                    </Border>
-                    <Border Grid.Column="1" BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="5, 0, 0, 0" Padding="5" CornerRadius="5">
-                        <ListView>
-                            <x:String>python>=3.9.0</x:String>
-                            <x:String>CUDA==11.3</x:String>
-                            <x:String>torch>=1.10.0</x:String>
-                            <x:String>torchvision>=0.8.1</x:String>
-                            <x:String>tensorboard>=2.4.1</x:String>
-                            <x:String>matplotlib>=3.2.2</x:String>
-                            <x:String>numpy>=1.18.5</x:String>
-                            <x:String>opencv-python>=4.1.2</x:String>
-                        </ListView>
-                    </Border>
-                </Grid>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <ListView>
+                        <x:String>python>=3.9.0</x:String>
+                        <x:String>CUDA==11.3</x:String>
+                        <x:String>torch>=1.10.0</x:String>
+                        <x:String>torchvision>=0.8.1</x:String>
+                        <x:String>tensorboard>=2.4.1</x:String>
+                        <x:String>matplotlib>=3.2.2</x:String>
+                        <x:String>numpy>=1.18.5</x:String>
+                        <x:String>opencv-python>=4.1.2</x:String>
+                    </ListView>
+                </Border>
                 <TextBlock Text="Python解释器路径" Style="{StaticResource SettingHeaderTextStyle}"/>
                 <InfoBar IsOpen="True" Severity="Informational" Title="提示" Message="如果已在设置中配置好Python解释器路径，此处可不必重复配置。" />
                 <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
@@ -246,14 +266,14 @@
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE756;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
                             <TextBlock Text="python" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="指定python解释器的路径，请按照右图安装依赖" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            <TextBlock Text="指定python解释器的路径，请按照上图安装依赖" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Content="转到设置" Margin="5"/>
                         </StackPanel>
                     </Grid>
                 </Border>
-                <Button Margin="0, 5, 0, 0" Style="{StaticResource AccentButtonStyle}" Content="开始训练" Width="200" HorizontalAlignment="Center"/>
+                <Button Margin="0, 5, 0, 0" Style="{StaticResource AccentButtonStyle}" Content="开始检测" Width="200" HorizontalAlignment="Center"/>
             </StackPanel>
         </ScrollViewer>
         <Button Grid.Row="1" Width="40" Height="40" Click="HomeButton_Click">

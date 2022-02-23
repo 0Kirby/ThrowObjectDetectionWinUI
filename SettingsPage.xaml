@@ -54,7 +54,7 @@
                             <ColumnDefinition Width="5*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE943;" Margin="10, 5, 5, 5"/>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE756;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
                             <TextBlock Text="python" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
                             <TextBlock Text="指定Python解释器的路径，如未设置则使用环境变量中的Python" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
@@ -70,8 +70,8 @@
                         <Button Margin="0, 5, 0, 0" Click="TestBtn_Click" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource AccentButtonStyle}" Content="测试解释器" HorizontalAlignment="Center"/>
                     </Grid>
                 </Border>
-                <TextBlock Text="ThrowObjectDetection-WinUI v0.6.0" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                <TextBlock Text="&#xA9; 0Kirby. All rights reserved." Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                <TextBlock Text="ThrowObjectDetection-WinUI v0.6.1" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                <TextBlock Text="Copyright &#xA9; 2021-2022. 0Kirby All rights reserved." Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
             </StackPanel>
         </ScrollViewer>
     </Grid>
