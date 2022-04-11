@@ -68,6 +68,8 @@ namespace ThrowObjectDetection
 
             uiSettings = new UISettings();
             uiSettings.ColorValuesChanged += UiSettings_ColorValuesChanged;
+
+            int dragSpace = MainWindow.CxScreen;
         }
 
         private unsafe void LoadIcon(HWND hwnd, string iconName)

@@ -1,6 +1,7 @@
 ﻿// Copyright (c) Microsoft Corporation.
 // Licensed under the MIT License.
 
+using Microsoft.UI.Windowing;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using Microsoft.UI.Xaml.Navigation;
@@ -50,6 +51,8 @@ namespace ThrowObjectDetection
                     Visibility = itemVisibility
                 });
                 lastTitle = item.Title;
+
+
             }
 
             NavigationViewItem settings = (NavigationViewItem)NavView.SettingsItem;
@@ -251,30 +254,55 @@ namespace ThrowObjectDetection
                     AppTitle.Margin = new Thickness(largeLeftIndent, currMargin.Top, currMargin.Right, currMargin.Bottom);
                 }
             }
-
+            /**
             if (sender.DisplayMode != NavigationViewDisplayMode.Minimal)
             {
 
                 Microsoft.UI.Windowing.AppWindowTitleBar titleBar = MainWindow.AppWindow.TitleBar;
 
                 // 当前控件的实际宽度.
-                //double totalSpace = ActualWidth;
+                double totalSpace = ActualWidth;
                 double height = AppTitleBar.ActualHeight;
 
                 // 搜索框的左边界相对于整个控件左边界的偏移值.
 
-                //double dragSpace = AppTitleBar.ActualWidth;
+                double dragSpace = AppTitleBar.ActualWidth;
 
-                int dragSpace = MainWindow.CxScreen;
+                //int dragSpace = MainWindow.CxScreen;
 
                 //bug
-                //double leftOffset = totalSpace - dragSpace;
+                double leftOffset = totalSpace - dragSpace;
 
-                double leftOffset = 96;
+                //double leftOffset = 96;
                 RectInt32 rect = new(Convert.ToInt32(leftOffset), 0, Convert.ToInt32(dragSpace), Convert.ToInt32(height));
-
-                titleBar.SetDragRectangles(new RectInt32[] { rect });
+                AppWindow _mainAppWindow = MainWindow.AppWindow;
+                _mainAppWindow.TitleBar.SetDragRectangles(new RectInt32[] { rect });
             }
+            **/
+        }
+        public void Update(int dragSpace0)
+        {
+            //Microsoft.UI.Windowing.AppWindowTitleBar titleBar = MainWindow.AppWindow.TitleBar;
+
+            // 当前控件的实际宽度.
+            double totalSpace = ActualWidth;
+            double height = AppTitleBar.ActualHeight;
+
+            // 搜索框的左边界相对于整个控件左边界的偏移值.
+
+            double dragSpace = AppTitleBar.ActualWidth;
+
+            //int dragSpace = MainWindow.CxScreen;
+
+            //bug
+            double leftOffset = totalSpace - dragSpace;
+            //double leftOffset = MyWindowIcon.Margin.Left;
+
+            //double leftOffset = 96;
+            RectInt32 rect = new(Convert.ToInt32(leftOffset), 0, Convert.ToInt32(dragSpace0), Convert.ToInt32(height));
+            AppWindow _mainAppWindow = MainWindow.AppWindow;
+
+            _mainAppWindow.TitleBar.SetDragRectangles(new RectInt32[] { rect });
         }
     }
 }

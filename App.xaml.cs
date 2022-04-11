@@ -16,11 +16,7 @@ namespace ThrowObjectDetection
 
         protected override void OnLaunched(LaunchActivatedEventArgs args)
         {
-            mainWindow = new MainWindow
-            {
-                ExtendsContentIntoTitleBar = true
-            };
-            //mainWindow.SetTitleBar(MainPage.TitleBar);
+            mainWindow = new MainWindow { };
             mainWindow.Activate();
         }
     }

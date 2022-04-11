@@ -59,7 +59,7 @@ namespace ThrowObjectDetection
                     CloseButtonText = "关闭"
                 };
                 noLabelImgDialog.XamlRoot = XamlRoot;
-                ContentDialogResult result = await noLabelImgDialog.ShowAsync();
+                _ = await noLabelImgDialog.ShowAsync();
             }
         }
     }
