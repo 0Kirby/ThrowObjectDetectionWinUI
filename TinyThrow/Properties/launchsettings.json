@@ -1,0 +1,10 @@
+﻿{
+    "profiles": {
+      "TinyThrow (Package)": {
+        "commandName": "MsixPackage"
+      },
+      "TinyThrow (Unpackaged)": {
+        "commandName": "Project"
+      }
+    }
+}
