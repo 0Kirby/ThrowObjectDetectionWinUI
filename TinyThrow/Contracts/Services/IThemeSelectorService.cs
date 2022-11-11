@@ -9,9 +9,14 @@ public interface IThemeSelectorService
         get;
     }
 
+    string Path
+    {
+        get;
+    }
+
     Task InitializeAsync();
 
     Task SetThemeAsync(ElementTheme theme);
-
+    Task SetPathAsync(string path);
     Task SetRequestedThemeAsync();
 }

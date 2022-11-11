@@ -18,6 +18,7 @@ public class SettingsViewModel : ObservableRecipient
     private readonly IThemeSelectorService _themeSelectorService;
     private ElementTheme _elementTheme;
     private string _versionDescription;
+    private string _path;
 
     public ElementTheme ElementTheme
     {
@@ -31,7 +32,18 @@ public class SettingsViewModel : ObservableRecipient
         set => SetProperty(ref _versionDescription, value);
     }
 
+    public string Path
+    {
+        get => _path;
+        set => SetProperty(ref _path, value);
+    }
+
     public ICommand SwitchThemeCommand
+    {
+        get;
+    }
+
+    public ICommand SwitchThemeCommand2
     {
         get;
     }
@@ -41,6 +53,7 @@ public class SettingsViewModel : ObservableRecipient
         _themeSelectorService = themeSelectorService;
         _elementTheme = _themeSelectorService.Theme;
         _versionDescription = GetVersionDescription();
+        _path = _themeSelectorService.Path;
 
         SwitchThemeCommand = new RelayCommand<ElementTheme>(
             async (param) =>
@@ -51,6 +64,16 @@ public class SettingsViewModel : ObservableRecipient
                     await _themeSelectorService.SetThemeAsync(param);
                 }
             });
+
+        SwitchThemeCommand2 = new RelayCommand<string>(
+           async (param) =>
+           {
+               if (_path != param)
+               {
+                   _path = param;
+                   await _themeSelectorService.SetPathAsync(param);
+               }
+           });
     }
 
     private static string GetVersionDescription()

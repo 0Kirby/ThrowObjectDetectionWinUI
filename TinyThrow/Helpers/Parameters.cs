@@ -2,11 +2,16 @@
 public class Parameters
 {
     private readonly string path;
+    private readonly string folder;
     private readonly string img;
     private readonly string batch;
     private readonly string epoch;
     private readonly string model;
     public string Path
+    {
+        get; set;
+    }
+    public string Folder
     {
         get; set;
     }
@@ -27,13 +32,13 @@ public class Parameters
         get; set;
     }
 
-    public Parameters(string path, string img, string batch, string epoch, string model)
+    public Parameters(string path, string folder, string img, string batch, string epoch, string model)
     {
         Path = path;
+        Folder = folder;
         Img = img;
         Batch = batch;
         Epoch = epoch;
         Model = model;
     }
-
 }

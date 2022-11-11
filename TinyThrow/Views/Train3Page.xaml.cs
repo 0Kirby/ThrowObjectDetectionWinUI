@@ -15,7 +15,7 @@ public sealed partial class Train3Page : Page
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         Parameters parameters = (Parameters)e.Parameter;
-        parameter.Text = $"{parameters.Path}\\train.py --img {parameters.Img} --batch {parameters.Batch} --epoch {parameters.Epoch} --data data/throw.yaml --cfg models/{parameters.Model}.yaml --weights weights/{parameters.Model}.pt";
+        parameter.Text = $"{parameters.Path} {parameters.Folder}\\train.py --img {parameters.Img} --batch {parameters.Batch} --epoch {parameters.Epoch} --data data/throw.yaml --cfg models/{parameters.Model}.yaml --weights weights/{parameters.Model}.pt";
         base.OnNavigatedTo(e);
     }
     public Train3Page()

@@ -15,9 +15,15 @@ public sealed partial class Train2Page : Page
         get;
     }
 
+    public SettingsViewModel ViewModel2
+    {
+        get; set;
+    }
+
     public Train2Page()
     {
         ViewModel = App.GetService<Train2ViewModel>();
+        ViewModel2 = App.GetService<SettingsViewModel>();
         this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         InitializeComponent();
     }
@@ -36,7 +42,9 @@ public sealed partial class Train2Page : Page
     }
     private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        Parameters parameters = new Parameters(SettingsText.Text, imgsz.Text, batch.Text, epoch.Text, "YOLOv5");
+        //Parameters parameters = new Parameters(SettingsText.Text, imgsz.Text, batch.Text, epoch.Text, "YOLOv5");
+        ViewModel2 = App.GetService<SettingsViewModel>();
+        Parameters parameters = new Parameters(ViewModel2.Path, SettingsText.Text, imgsz.Text, batch.Text, epoch.Text, "YOLOv5");
 
         var navigationService = App.GetService<INavigationService>();
 
@@ -61,5 +69,6 @@ public sealed partial class Train2Page : Page
         {
             SettingsText.Text = file.Path;
         }
+        window.Close();
     }
 }
