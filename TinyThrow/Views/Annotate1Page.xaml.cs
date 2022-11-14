@@ -32,7 +32,7 @@ public sealed partial class Annotate1Page : Page
     {
         int lastIndex;
         string substr;
-        await _localSettingsService.SaveSettingAsync<string>("pythonInterpreter", "python.exe");
+        //await _localSettingsService.SaveSettingAsync<string>("pythonInterpreter", "python.exe");
         var interpreterPath = await _localSettingsService.ReadSettingAsync<string>("pythonInterpreter");
         //ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
         Process p = new();
