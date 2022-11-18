@@ -42,9 +42,8 @@ public sealed partial class Train2Page : Page
     }
     private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        //Parameters parameters = new Parameters(SettingsText.Text, imgsz.Text, batch.Text, epoch.Text, "YOLOv5");
         ViewModel2 = App.GetService<SettingsViewModel>();
-        Parameters parameters = new Parameters(ViewModel2.Path, SettingsText.Text, imgsz.Text, batch.Text, epoch.Text, "YOLOv5");
+        Parameters parameters = new Parameters(ViewModel2.Path, ScriptText.Text, imgsz.Text, batch.Text, epoch.Text, "YOLOv5");
 
         var navigationService = App.GetService<INavigationService>();
 
@@ -56,7 +55,7 @@ public sealed partial class Train2Page : Page
 
         navigationService.NavigateTo(typeof(SettingsViewModel).FullName!);
     }
-    private async void BrowseBtn_Click(object sender, RoutedEventArgs e)
+    private async void BrowseBtn1_Click(object sender, RoutedEventArgs e)
     {
         FolderPicker folderPicker = new();
 
@@ -67,7 +66,22 @@ public sealed partial class Train2Page : Page
 
         if (file != null)
         {
-            SettingsText.Text = file.Path;
+            DatasetText.Text = file.Path;
+        }
+        window.Close();
+    }
+    private async void BrowseBtn2_Click(object sender, RoutedEventArgs e)
+    {
+        FolderPicker folderPicker = new();
+
+        var window = new Microsoft.UI.Xaml.Window();
+        var hWnd = WinRT.Interop.WindowNative.GetWindowHandle(window);
+        WinRT.Interop.InitializeWithWindow.Initialize(folderPicker, hWnd);
+        var file = await folderPicker.PickSingleFolderAsync();
+
+        if (file != null)
+        {
+            ScriptText.Text = file.Path;
         }
         window.Close();
     }

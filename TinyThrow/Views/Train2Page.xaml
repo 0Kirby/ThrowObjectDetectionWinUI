@@ -183,13 +183,34 @@
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8B7;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
                             <TextBlock Text="data" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="指定数据集files文件夹的路径，请按照左图组织文件" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            <TextBlock Text="指定数据集dataset文件夹的路径，请按照左图组织文件" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Content="选取文件夹" Click="BrowseBtn_Click" Margin="5"/>
+                            <Button Content="选取文件夹" Click="BrowseBtn1_Click" Margin="5"/>
                         </StackPanel>
-                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="SettingsText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400"/>
-
+                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="DatasetText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400"/>
+                    </Grid>
+                </Border>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8F7;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="data" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="指定TinyThrow算法文件夹的路径" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="选取文件夹" Click="BrowseBtn2_Click" Margin="5"/>
+                        </StackPanel>
+                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="ScriptText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400"/>
                     </Grid>
                 </Border>
                 <Grid>
@@ -203,7 +224,7 @@
 					<Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0, 0, 5, 0" Padding="5" CornerRadius="5">
 						<TreeView>
 							<TreeView.RootNodes>
-								<TreeViewNode Content="files" IsExpanded="True">
+								<TreeViewNode Content="dataset" IsExpanded="True">
 									<TreeViewNode.Children>
 										<TreeViewNode Content="images" IsExpanded="True">
 											<TreeViewNode.Children>
