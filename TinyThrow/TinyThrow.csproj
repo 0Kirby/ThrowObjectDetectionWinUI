@@ -15,7 +15,7 @@
     <EnableMsixTooling>true</EnableMsixTooling>
     <WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
     <DefaultLanguage>zh-Hans</DefaultLanguage>
-    <PackageCertificateThumbprint>A711403A900978455A53A7938B21379648E958EB</PackageCertificateThumbprint>
+    <PackageCertificateThumbprint>A52351C4252E5E49B5BAC1429EB23C69F5E5B940</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
   </PropertyGroup>
@@ -27,9 +27,9 @@
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.1.5" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221116.1" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
-    <PackageReference Include="WinUIEx" Version="1.8.0" />
+    <PackageReference Include="WinUIEx" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>

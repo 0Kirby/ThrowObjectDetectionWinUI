@@ -43,7 +43,7 @@ public sealed partial class Train2Page : Page
     private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         ViewModel2 = App.GetService<SettingsViewModel>();
-        Parameters parameters = new Parameters(ViewModel2.Path, ScriptText.Text, imgsz.Text, batch.Text, epoch.Text, "YOLOv5");
+        Parameters parameters = new Parameters(ViewModel2.Path, ScriptText.Text, imgsz.Text, batch.Text, epoch.Text, (string)model.SelectedItem, (string)scale.SelectedItem);
 
         var navigationService = App.GetService<INavigationService>();
 
@@ -84,5 +84,50 @@ public sealed partial class Train2Page : Page
             ScriptText.Text = file.Path;
         }
         window.Close();
+    }
+
+    private void Button_Enable_Text(object sender, TextChangedEventArgs e)
+    {
+        if (imgsz.Text != "" && batch.Text != "" && epoch.Text != "" && model.SelectedItem != null && scale.SelectedItem != null
+            && device.Text != "" && DatasetText.Text != "" && ScriptText.Text != "")
+        {
+            RightButton.IsEnabled = true;
+            start.IsEnabled = true;
+        }
+        else
+        {
+            RightButton.IsEnabled = false;
+            start.IsEnabled = false;
+        }
+    }
+
+    private void Button_Enable_Selection(object sender, SelectionChangedEventArgs e)
+    {
+        if (imgsz.Text != "" && batch.Text != "" && epoch.Text != "" && model.SelectedItem != null && scale.SelectedItem != null
+            && device.Text != "" && DatasetText.Text != "" && ScriptText.Text != "")
+        {
+            cpuOnly.IsOn = false;
+            RightButton.IsEnabled = true;
+            start.IsEnabled = true;
+        }
+        else
+        {
+            RightButton.IsEnabled = false;
+            start.IsEnabled = false;
+        }
+    }
+
+    private void Button_Enable_Toggle(object sender, RoutedEventArgs e)
+    {
+        if (cpuOnly.IsOn == true)
+        {
+            device.Text = "cpu";
+            device.IsEnabled = false;
+        }
+        else
+        {
+            device.Text = "0";
+            device.IsEnabled = true;
+        }
     }
 }

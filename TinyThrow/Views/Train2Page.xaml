@@ -30,7 +30,7 @@
 							<TextBlock Text="输入图片分辨率" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
 						</StackPanel>
 						<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-							<TextBox x:Name="imgsz" PlaceholderText="640" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center"/>
+                            <TextBox x:Name="imgsz" PlaceholderText="640" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center" TextChanged="Button_Enable_Text"/>
 						</StackPanel>
 					</Grid>
 				</Border>
@@ -50,7 +50,7 @@
 							<TextBlock Text="每次迭代的图片张数" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
 						</StackPanel>
 						<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-							<TextBox x:Name="batch" PlaceholderText="64" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center"/>
+                            <TextBox x:Name="batch" PlaceholderText="64" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center" TextChanged="Button_Enable_Text"/>
 						</StackPanel>
 					</Grid>
 				</Border>
@@ -70,7 +70,7 @@
 							<TextBlock Text="训练总轮数" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
 						</StackPanel>
 						<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-							<TextBox x:Name="epoch" PlaceholderText="300" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center"/>
+                            <TextBox x:Name="epoch" PlaceholderText="300" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center" TextChanged="Button_Enable_Text"/>
 						</StackPanel>
 					</Grid>
 				</Border>
@@ -91,13 +91,10 @@
 							<TextBlock Text="改进YOLOv5的高空抛物目标检测算法配置文件" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
 						</StackPanel>
 						<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-							<ComboBox PlaceholderText="配置文件" Width="200" VerticalAlignment="Center">
-								<x:String>ThrowObject-YOLO</x:String>
-								<x:String>YOLOv5</x:String>
-								<x:String>+FCBAM</x:String>
-								<x:String>+C3Trans</x:String>
-								<x:String>+P2</x:String>
-							</ComboBox>
+                            <ComboBox x:Name="model" PlaceholderText="配置文件" Width="200" VerticalAlignment="Center" SelectionChanged="Button_Enable_Selection">
+								<x:String>TinyThrow</x:String>
+                                <x:String>YOLOv5</x:String>
+                            </ComboBox>
 						</StackPanel>
 					</Grid>
 				</Border>
@@ -117,7 +114,7 @@
 							<TextBlock Text="网络规模，n-微型，s-小型，m-中型，l-大型，x-巨型" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
 						</StackPanel>
 						<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-							<ComboBox PlaceholderText="网络规模" Width="200" VerticalAlignment="Center">
+                            <ComboBox x:Name="scale" PlaceholderText="网络规模" Width="200" VerticalAlignment="Center" SelectionChanged="Button_Enable_Selection">
 								<x:String>Nano</x:String>
 								<x:String>Small</x:String>
 								<x:String>Medium</x:String>
@@ -144,7 +141,7 @@
 							<TextBlock Text="仅使用CPU进行训练" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
 						</StackPanel>
 						<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-							<ToggleSwitch x:Name="cpuOnly" VerticalAlignment="Center" Margin="0, 0, -50, 0"/>
+                            <ToggleSwitch x:Name="cpuOnly" VerticalAlignment="Center" Margin="0, 0, -50, 0" Toggled="Button_Enable_Toggle"/>
 						</StackPanel>
 					</Grid>
 				</Border>
@@ -164,7 +161,7 @@
 							<TextBlock Text="训练使用的显卡，如0、0,1、0,1,2,3等" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
 						</StackPanel>
 						<StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-							<TextBox x:Name="device" PlaceholderText="0" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center"/>
+                            <TextBox x:Name="device" PlaceholderText="0" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center" Text="0" TextChanged="Button_Enable_Text"/>
 						</StackPanel>
 					</Grid>
 				</Border>
@@ -182,13 +179,13 @@
                         </Grid.ColumnDefinitions>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8B7;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
-                            <TextBlock Text="data" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="dataset" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
                             <TextBlock Text="指定数据集dataset文件夹的路径，请按照左图组织文件" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Content="选取文件夹" Click="BrowseBtn1_Click" Margin="5"/>
                         </StackPanel>
-                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="DatasetText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400"/>
+                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="DatasetText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" TextChanged="Button_Enable_Text"/>
                     </Grid>
                 </Border>
                 <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
@@ -204,13 +201,13 @@
                         </Grid.ColumnDefinitions>
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8F7;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
-                            <TextBlock Text="data" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="algorithm" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
                             <TextBlock Text="指定TinyThrow算法文件夹的路径" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Content="选取文件夹" Click="BrowseBtn2_Click" Margin="5"/>
                         </StackPanel>
-                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="ScriptText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400"/>
+                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="ScriptText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" TextChanged="Button_Enable_Text"/>
                     </Grid>
                 </Border>
                 <Grid>
@@ -280,7 +277,7 @@
 						</StackPanel>
 					</Grid>
 				</Border>
-				<Button Margin="0, 5, 0, 0" Style="{StaticResource AccentButtonStyle}" Content="开始训练" Width="200" HorizontalAlignment="Center" Click="RightButton_Click"/>
+				<Button x:Name="start" Margin="0, 5, 0, 0" Style="{StaticResource AccentButtonStyle}" IsEnabled="False" Content="开始训练" Width="200" HorizontalAlignment="Center" Click="RightButton_Click"/>
 			</StackPanel>
 		</ScrollViewer>
 		<Button Grid.Row="1" Width="40" Height="40" Click="HomeButton_Click">
@@ -290,7 +287,7 @@
 			<Button Width="40" Height="40" Margin="10" Click="LeftButton_Click">
 				<FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE76B;" FontSize="16"/>
 			</Button>
-			<Button Width="40" Height="40" Click="RightButton_Click">
+			<Button x:Name="RightButton" Width="40" Height="40" Click="RightButton_Click">
 				<FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE76C;" FontSize="16"/>
 			</Button>
 		</StackPanel>
