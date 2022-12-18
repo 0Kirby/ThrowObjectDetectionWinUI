@@ -27,7 +27,12 @@ internal class TitleBarHelper
     {
         if (App.MainWindow.ExtendsContentIntoTitleBar)
         {
-            if (theme != ElementTheme.Default)
+
+            if (theme == ElementTheme.Default)
+            {
+                var themeMode = Application.Current.RequestedTheme;
+                theme = themeMode == ApplicationTheme.Dark ? ElementTheme.Dark : ElementTheme.Light;
+            }
             {
                 Application.Current.Resources["WindowCaptionForeground"] = theme switch
                 {
