@@ -84,7 +84,7 @@
                             <Button Content="选取文件" Click="BrowseBtn_Click" Margin="5"/>
                         </StackPanel>
                         <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="SettingsText" IsReadOnly="True" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400"/>
-                        <Button Margin="0, 5, 0, 0" Click="TestBtn_Click" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource AccentButtonStyle}" Content="测试解释器" HorizontalAlignment="Center"/>
+                        <Button Margin="0, 5, 0, 0" Click="TestBtn_Click" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource AccentButtonStyle}" Content="测试解释器" Width="200" HorizontalAlignment="Center"/>
                     </Grid>
                 </Border>
 

@@ -46,7 +46,7 @@
                 <NavigationViewItemHeader x:Name="HomePageHeader" Content="功能"/>
                 <NavigationViewItem x:Uid="Shell_Home" helpers:NavigationHelper.NavigateTo="TinyThrow.ViewModels.HomeViewModel">
                     <NavigationViewItem.Icon>
-                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xf1ad;"/>
+                        <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe734;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
                 <NavigationViewItem x:Uid="Shell_Annotate1" helpers:NavigationHelper.NavigateTo="TinyThrow.ViewModels.Annotate1ViewModel">

@@ -8,6 +8,7 @@ public class Parameters
     private readonly string epoch;
     private readonly string model;
     private readonly string scale;
+    private readonly string device;
     public string Path
     {
         get; set;
@@ -36,7 +37,11 @@ public class Parameters
     {
         get; set;
     }
-    public Parameters(string path, string folder, string img, string batch, string epoch, string model, string scale)
+    public string Device
+    {
+        get; set;
+    }
+    public Parameters(string path, string folder, string img, string batch, string epoch, string model, string scale, string device)
     {
         Path = path;
         Folder = folder;
@@ -45,5 +50,6 @@ public class Parameters
         Epoch = epoch;
         Model = model;
         Scale = scale;
+        Device = device;
     }
 }

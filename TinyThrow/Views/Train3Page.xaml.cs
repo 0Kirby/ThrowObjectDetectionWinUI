@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Timers;
 using Microsoft.UI.Xaml.Controls;
+using Microsoft.UI.Xaml.Documents;
 using Microsoft.UI.Xaml.Navigation;
 using TinyThrow.Contracts.Services;
 using TinyThrow.Helpers;
@@ -16,6 +17,10 @@ public sealed partial class Train3Page : Page
     private Stopwatch _stopwatch;
     private Process p;
     private DateTime startTime;
+    private string weightFile;
+    private Run run;
+    private Hyperlink hyperlink;
+    private readonly string[] weightFiles = { "yolov5n6.pt", "yolov5s6.pt", "yolov5m6.pt", "yolov5l6.pt", "yolov5x6.pt" };
 
     public Train3ViewModel ViewModel
     {
@@ -26,16 +31,31 @@ public sealed partial class Train3Page : Page
     {
         aTimer.Stop();
         _stopwatch.Stop();
+
+        string content = "";
+        string notification = "";
+
+        if (p.ExitCode == 0)
+        {
+            content = "运行成功！";
+            notification = "AppNotificationSuccess";
+        }
+        else
+        {
+            content = "运行失败！";
+            notification = "AppNotificationFailure";
+        }
+
         MainWindow.MyDispatcherQueue.TryEnqueue(() =>
         {
             ContentDialog launchComplete = new()
             {
                 Title = "提示",
-                Content = "运行成功！",
-                CloseButtonText = "关闭"
+                Content = content,
+                CloseButtonText = "关闭",
+                XamlRoot = XamlRoot
             };
-            launchComplete.XamlRoot = XamlRoot;
-            launchComplete.ShowAsync();
+            _ = launchComplete.ShowAsync();
             stopTrain.IsEnabled = false;
             home.IsEnabled = true;
             left.IsEnabled = true;
@@ -45,13 +65,34 @@ public sealed partial class Train3Page : Page
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
             timerText.Text = startTime + "    |    " + p.ExitTime + "    |    " + elapsedTime;
         });
-        App.GetService<IAppNotificationService>().Show(string.Format("AppNotificationSamplePayload".GetLocalized(), AppContext.BaseDirectory));
+        App.GetService<IAppNotificationService>().Show(string.Format(notification.GetLocalized(), AppContext.BaseDirectory));
     }
 
     protected override void OnNavigatedTo(NavigationEventArgs e)
     {
         parameters = (Parameters)e.Parameter;
-        parameter.Text = $"{parameters.Path} {parameters.Folder}\\train.py --img {parameters.Img} --batch {parameters.Batch} --epoch {parameters.Epoch} --data data/throw.yaml --cfg models/{parameters.Model}.yaml --weights weights/{parameters.Model}.pt";
+
+        switch (parameters.Scale)
+        {
+            case "Nano":
+                weightFile = weightFiles[0];
+                break;
+            case "Small":
+                weightFile = weightFiles[1];
+                break;
+            case "Medium":
+                weightFile = weightFiles[2];
+                break;
+            case "Large":
+                weightFile = weightFiles[3];
+                break;
+            case "ExtraLarge":
+                weightFile = weightFiles[4];
+                break;
+        }
+        parameter.Text = $"{parameters.Path} {parameters.Folder}\\train.py --img {parameters.Img} --batch {parameters.Batch} --epoch {parameters.Epoch} " +
+            $"--data data/dataset_new.yaml --cfg models/script.yaml --weights weights/{weightFile} --device {parameters.Device}";
+        output.Inlines.Clear();
         FindDirectories();
         stopTrain.IsEnabled = true;
         home.IsEnabled = false;
@@ -70,7 +111,7 @@ public sealed partial class Train3Page : Page
             var dirs = Directory.GetDirectories(parameters.Folder + @"\runs\train\", "exp*", SearchOption.TopDirectoryOnly);
             int max = 0;
             string r = @"[0-9]+";
-            Regex regex = new Regex(r, RegexOptions.IgnoreCase | RegexOptions.Singleline, TimeSpan.FromSeconds(3)); //2秒后超时       
+            Regex regex = new Regex(r, RegexOptions.IgnoreCase | RegexOptions.Singleline, TimeSpan.FromSeconds(3)); //3秒后超时       
             foreach (var dir in dirs)
             {
                 var dirName = dir.Split('\\').Last();
@@ -87,15 +128,25 @@ public sealed partial class Train3Page : Page
                     max = 1;
                 //var numberString = System.Text.RegularExpressions.Regex.Replace(dirName, @"[^0-9]+", "");
             }
+            hyperlink = new Hyperlink();
+            hyperlink.Click += OpenOutputFolder;
+
+            run = new Run();
+
             if (max != 0)
-                output.Text = parameters.Folder + @"\runs\train\exp" + (max + 1);
+                run.Text = parameters.Folder + @"\runs\train\exp" + (max + 1);
             else
-                output.Text = parameters.Folder + @"\runs\train\exp";
+                run.Text = parameters.Folder + @"\runs\train\exp";
         }
         catch (System.IO.DirectoryNotFoundException)
         {
             Directory.CreateDirectory(parameters.Folder + @"\runs\train\");
-            output.Text = parameters.Folder + @"\runs\train\exp";
+            run.Text = parameters.Folder + @"\runs\train\exp";
+        }
+        finally
+        {
+            hyperlink.Inlines.Add(run);
+            output.Inlines.Add(hyperlink);
         }
     }
     public Train3Page()
@@ -125,7 +176,8 @@ public sealed partial class Train3Page : Page
         // Get the path to the app's Assets folder.
         string root = Environment.CurrentDirectory;
         //p.StartInfo.Arguments = @"C:\Users\jty\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5\train.py --img 640 --batch 4 --epoch 1 --data data/throw.yaml --cfg models/yolov5n.yaml --weights weights/yolov5n.pt";
-        p.StartInfo.Arguments = $"{parameters.Folder}\\train.py --img {parameters.Img} --batch {parameters.Batch} --epoch {parameters.Epoch} --data data/throw.yaml --cfg models/yolov5n.yaml --weights weights/yolov5n.pt";
+        p.StartInfo.Arguments = $"{parameters.Folder}\\train.py --img {parameters.Img} --batch {parameters.Batch} --epoch {parameters.Epoch} " +
+            $"--data data/dataset_new.yaml --cfg models/script.yaml --weights weights/{weightFile} --device {parameters.Device}";
         p.StartInfo.UseShellExecute = false;
         p.EnableRaisingEvents = true;
         p.Exited += new EventHandler(ProcessExited);
@@ -143,7 +195,7 @@ public sealed partial class Train3Page : Page
         aTimer.Enabled = true;
     }
 
-    private void OnTimedEvent(Object source, ElapsedEventArgs e)
+    private void OnTimedEvent(object source, ElapsedEventArgs e)
     {
         MainWindow.MyDispatcherQueue.TryEnqueue(() =>
         {
@@ -152,13 +204,35 @@ public sealed partial class Train3Page : Page
             TimeSpan ts = _stopwatch.Elapsed;
 
             // Format and display the TimeSpan value.
-            string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
+            string elapsedTime = string.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
             timerText.Text = startTime + @"    |    ----/--/-- --:--:--    |    " + elapsedTime;
         });
     }
 
-    private void stopTrain_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    private void StopTrain_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         p.Kill();
+    }
+
+    private void OpenOutputFolder(Hyperlink sender, HyperlinkClickEventArgs args)
+    {
+        if (Directory.Exists(run.Text))
+        {
+            Process.Start("explorer.exe", run.Text);
+        }
+        else
+        {
+            MainWindow.MyDispatcherQueue.TryEnqueue(() =>
+            {
+                ContentDialog pleaseWait = new()
+                {
+                    Title = "提示",
+                    Content = "文件夹尚未创建完成，请稍后…",
+                    CloseButtonText = "关闭",
+                    XamlRoot = XamlRoot
+                };
+                _ = pleaseWait.ShowAsync();
+            });
+        }
     }
 }

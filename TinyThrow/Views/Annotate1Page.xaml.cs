@@ -8,7 +8,6 @@ namespace TinyThrow.Views;
 public sealed partial class Annotate1Page : Page
 {
     private readonly ILocalSettingsService _localSettingsService;
-
     public Annotate1ViewModel ViewModel
     {
         get;
@@ -31,22 +30,17 @@ public sealed partial class Annotate1Page : Page
     private async void OpenButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         int lastIndex;
-        string substr;
-        //await _localSettingsService.SaveSettingAsync<string>("pythonInterpreter", "python.exe");
+        string substr = "";
         var interpreterPath = await _localSettingsService.ReadSettingAsync<string>("pythonInterpreter");
-        //ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
         Process p = new();
-        //string interpreterPath = (string)localSettings.Values["pythonInterpreter"];
         if (interpreterPath is not null)
         {
             lastIndex = interpreterPath.LastIndexOf("python");
-            substr = interpreterPath[..lastIndex];
+            if (lastIndex != -1)
+            {
+                substr = interpreterPath[..lastIndex];
+            }
         }
-        else
-        {
-            substr = "";
-        }
-
         p.StartInfo.FileName = substr + "labelimg";
         p.StartInfo.UseShellExecute = false;
         p.StartInfo.CreateNoWindow = true;
@@ -60,9 +54,9 @@ public sealed partial class Annotate1Page : Page
             {
                 Title = "未找到labelImg",
                 Content = "请检查环境中是否安装labelImg并再试一次。",
-                CloseButtonText = "关闭"
+                CloseButtonText = "关闭",
+                XamlRoot = XamlRoot
             };
-            noLabelImgDialog.XamlRoot = XamlRoot;
             _ = await noLabelImgDialog.ShowAsync();
         }
     }
