@@ -2,21 +2,20 @@
 using Microsoft.UI.Xaml.Controls;
 using TinyThrow.Contracts.Services;
 using TinyThrow.ViewModels;
-
 namespace TinyThrow.Views;
 
-public sealed partial class Annotate2Page : Page
+public sealed partial class Annotate3Page : Page
 {
     private readonly ILocalSettingsService _localSettingsService;
     private readonly INavigationService navigationService;
-    public Annotate2ViewModel ViewModel
+    public Annotate3ViewModel ViewModel
     {
         get;
     }
 
-    public Annotate2Page()
+    public Annotate3Page()
     {
-        ViewModel = App.GetService<Annotate2ViewModel>();
+        ViewModel = App.GetService<Annotate3ViewModel>();
         InitializeComponent();
         _localSettingsService = App.GetService<ILocalSettingsService>();
         navigationService = App.GetService<INavigationService>();
@@ -30,12 +29,12 @@ public sealed partial class Annotate2Page : Page
 
     private void LeftButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        navigationService.NavigateTo(typeof(Annotate1ViewModel).FullName!);
+        navigationService.NavigateTo(typeof(Annotate2ViewModel).FullName!);
     }
 
     private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-        navigationService.NavigateTo(typeof(Annotate3ViewModel).FullName!);
+        navigationService.NavigateTo(typeof(Annotate4ViewModel).FullName!);
     }
 
     private async void OpenButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)

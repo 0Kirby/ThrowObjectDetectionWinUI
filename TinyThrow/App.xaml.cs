@@ -69,6 +69,10 @@ public partial class App : Application
             services.AddSingleton<IFileService, FileService>();
 
             // Views and ViewModels
+            services.AddTransient<Annotate4ViewModel>();
+            services.AddTransient<Annotate4Page>();
+            services.AddTransient<Annotate3ViewModel>();
+            services.AddTransient<Annotate3Page>();
             services.AddTransient<Train3ViewModel>();
             services.AddTransient<Train3Page>();
             services.AddTransient<Train2ViewModel>();

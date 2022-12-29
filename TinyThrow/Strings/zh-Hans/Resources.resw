@@ -176,9 +176,6 @@
   <data name="Shell_Train1.Content" xml:space="preserve">
     <value>训练</value>
   </data>
-  <data name="Shell_Annotate2.Content" xml:space="preserve">
-    <value>标注</value>
-  </data>
   <data name="Shell_Train2.Content" xml:space="preserve">
     <value>训练</value>
   </data>

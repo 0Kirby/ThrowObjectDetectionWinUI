@@ -170,9 +170,6 @@
   <data name="Shell_Annotate1.Content" xml:space="preserve">
     <value>Annotate1</value>
   </data>
-  <data name="Shell_Annotate2.Content" xml:space="preserve">
-    <value>Annotate2</value>
-  </data>
   <data name="Shell_Train1.Content" xml:space="preserve">
     <value>Train1</value>
   </data>
