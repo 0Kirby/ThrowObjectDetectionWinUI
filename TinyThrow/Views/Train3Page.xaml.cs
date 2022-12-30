@@ -20,6 +20,7 @@ public sealed partial class Train3Page : Page
     private string weightFile;
     private Run run;
     private Hyperlink hyperlink;
+    private readonly ShellViewModel shellViewModel;
     private readonly string[] weightFiles = { "yolov5n6.pt", "yolov5s6.pt", "yolov5m6.pt", "yolov5l6.pt", "yolov5x6.pt" };
 
     public Train3ViewModel ViewModel
@@ -59,6 +60,7 @@ public sealed partial class Train3Page : Page
             stopTrain.IsEnabled = false;
             home.IsEnabled = true;
             left.IsEnabled = true;
+            shellViewModel.NavigationViewService.EnableNavigationView();
 
             TimeSpan ts = p.ExitTime - startTime;
 
@@ -152,8 +154,10 @@ public sealed partial class Train3Page : Page
     public Train3Page()
     {
         ViewModel = App.GetService<Train3ViewModel>();
-        this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+        NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         InitializeComponent();
+        shellViewModel = ShellPage.ViewModelPublic;
+        shellViewModel.NavigationViewService.DisableNavigationView();
     }
 
     private void HomeButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)

@@ -23,6 +23,8 @@ public class PageService : IPageService
         Configure<Train3ViewModel, Train3Page>();
         Configure<Annotate3ViewModel, Annotate3Page>();
         Configure<Annotate4ViewModel, Annotate4Page>();
+        Configure<Detect1ViewModel, Detect1Page>();
+        Configure<Detect2ViewModel, Detect2Page>();
     }
 
     public Type GetPageType(string key)

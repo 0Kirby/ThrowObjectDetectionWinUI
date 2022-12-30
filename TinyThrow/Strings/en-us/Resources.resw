@@ -168,16 +168,16 @@
 &lt;/toast&gt;</value>
   </data>
   <data name="Shell_Annotate1.Content" xml:space="preserve">
-    <value>Annotate1</value>
+    <value>Annotate</value>
   </data>
   <data name="Shell_Train1.Content" xml:space="preserve">
-    <value>Train1</value>
+    <value>Train</value>
   </data>
   <data name="Shell_Train2.Content" xml:space="preserve">
-    <value>Train2</value>
+    <value>Train</value>
   </data>
   <data name="Shell_Train3.Content" xml:space="preserve">
-    <value>Train3</value>
+    <value>Train</value>
   </data>
   <data name="AppNotificationFailure" xml:space="preserve">
     <value>&lt;toast launch="action=ToastClick"&gt;
@@ -192,5 +192,20 @@
     &lt;action content="Settings" arguments="action=Settings"/&gt;
   &lt;/actions&gt;
 &lt;/toast&gt;</value>
+  </data>
+  <data name="Shell_Detect1.Content" xml:space="preserve">
+    <value>Detect</value>
+  </data>
+  <data name="Shell_Detect2.Content" xml:space="preserve">
+    <value>Detect</value>
+  </data>
+  <data name="Shell_Annotate2.Content" xml:space="preserve">
+    <value>Annotate</value>
+  </data>
+  <data name="Shell_Annotate3.Content" xml:space="preserve">
+    <value>Annotate</value>
+  </data>
+  <data name="Shell_Annotate4.Content" xml:space="preserve">
+    <value>Annotate</value>
   </data>
 </root>

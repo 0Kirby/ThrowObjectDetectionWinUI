@@ -26,7 +26,7 @@ public sealed partial class Train2Page : Page
     {
         ViewModel = App.GetService<Train2ViewModel>();
         ViewModel2 = App.GetService<SettingsViewModel>();
-        this.NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+        NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         InitializeComponent();
     }
 

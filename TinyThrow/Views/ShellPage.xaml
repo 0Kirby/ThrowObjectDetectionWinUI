@@ -59,7 +59,7 @@
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe945;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_Detection" helpers:NavigationHelper.NavigateTo="TinyThrow.ViewModels.HomeViewModel">
+                <NavigationViewItem x:Uid="Shell_Detect1" helpers:NavigationHelper.NavigateTo="TinyThrow.ViewModels.Detect1ViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe8a3;"/>
                     </NavigationViewItem.Icon>

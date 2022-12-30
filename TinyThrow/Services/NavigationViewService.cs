@@ -53,6 +53,38 @@ public class NavigationViewService : INavigationViewService
         return null;
     }
 
+    public void DisableNavigationView()
+    {
+        if (_navigationView != null)
+        {
+            _navigationView.IsBackEnabled = false;
+            foreach (var item in _navigationView.MenuItems)
+            {
+                if (item is NavigationViewItem navigationViewItem)
+                {
+                    navigationViewItem.IsEnabled = false;
+                }
+            }
+            _navigationView.IsSettingsVisible = false;
+        }
+    }
+
+    public void EnableNavigationView()
+    {
+        if (_navigationView != null)
+        {
+            _navigationView.IsBackEnabled = true;
+            foreach (var item in _navigationView.MenuItems)
+            {
+                if (item is NavigationViewItem navigationViewItem)
+                {
+                    navigationViewItem.IsEnabled = true;
+                }
+            }
+            _navigationView.IsSettingsVisible = true;
+        }
+    }
+
     private void OnBackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args) => _navigationService.GoBack();
 
     private void OnItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)

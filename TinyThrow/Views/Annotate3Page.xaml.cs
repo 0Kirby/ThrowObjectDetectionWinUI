@@ -23,7 +23,6 @@ public sealed partial class Annotate3Page : Page
 
     private void HomeButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
-
         navigationService.NavigateTo(typeof(Annotate1ViewModel).FullName!);
     }
 

@@ -4,16 +4,16 @@ using TinyThrow.ViewModels;
 
 namespace TinyThrow.Views;
 
-public sealed partial class Train1Page : Page
+public sealed partial class Detect1Page : Page
 {
-    public Train1ViewModel ViewModel
+    public Detect1ViewModel ViewModel
     {
         get;
     }
 
-    public Train1Page()
+    public Detect1Page()
     {
-        ViewModel = App.GetService<Train1ViewModel>();
+        ViewModel = App.GetService<Detect1ViewModel>();
         NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         InitializeComponent();
     }
@@ -21,7 +21,7 @@ public sealed partial class Train1Page : Page
     private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         var navigationService = App.GetService<INavigationService>();
-        navigationService.NavigateTo(typeof(Train2ViewModel).FullName!);
+        navigationService.NavigateTo(typeof(Detect2ViewModel).FullName!);
     }
 
 }

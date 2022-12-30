@@ -6,6 +6,7 @@ using Microsoft.UI.Xaml.Navigation;
 using TinyThrow.Contracts.Services;
 using TinyThrow.Contracts.ViewModels;
 using TinyThrow.Helpers;
+using TinyThrow.ViewModels;
 
 namespace TinyThrow.Services;
 
@@ -90,9 +91,15 @@ public class NavigationService : INavigationService
             _frame.Tag = clearNavigation;
             var vmBeforeNavigation = _frame.GetPageViewModel();
             var navigated = _frame.Navigate(pageType, parameter);
+
             if (navigated)
             {
                 _lastParameterUsed = parameter;
+                if (vmBeforeNavigation is Train3ViewModel)
+                {
+                    var back = _frame.BackStack;
+                    back.RemoveAt(back.Count - 1);
+                }
                 if (vmBeforeNavigation is INavigationAware navigationAware)
                 {
                     navigationAware.OnNavigatedFrom();
