@@ -95,7 +95,7 @@ public class NavigationService : INavigationService
             if (navigated)
             {
                 _lastParameterUsed = parameter;
-                if (vmBeforeNavigation is Train3ViewModel)
+                if (vmBeforeNavigation is Train3ViewModel || vmBeforeNavigation is Detect3ViewModel)
                 {
                     var back = _frame.BackStack;
                     back.RemoveAt(back.Count - 1);

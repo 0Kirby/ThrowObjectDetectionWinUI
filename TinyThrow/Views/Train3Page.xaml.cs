@@ -99,6 +99,7 @@ public sealed partial class Train3Page : Page
         stopTrain.IsEnabled = true;
         home.IsEnabled = false;
         left.IsEnabled = false;
+        shellViewModel.NavigationViewService.DisableNavigationView();
         LaunchProcess();
         SetTimer();
         _stopwatch = new Stopwatch();
@@ -157,7 +158,6 @@ public sealed partial class Train3Page : Page
         NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
         InitializeComponent();
         shellViewModel = ShellPage.ViewModelPublic;
-        shellViewModel.NavigationViewService.DisableNavigationView();
     }
 
     private void HomeButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)

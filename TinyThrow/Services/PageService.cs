@@ -25,6 +25,7 @@ public class PageService : IPageService
         Configure<Annotate4ViewModel, Annotate4Page>();
         Configure<Detect1ViewModel, Detect1Page>();
         Configure<Detect2ViewModel, Detect2Page>();
+        Configure<Detect3ViewModel, Detect3Page>();
     }
 
     public Type GetPageType(string key)

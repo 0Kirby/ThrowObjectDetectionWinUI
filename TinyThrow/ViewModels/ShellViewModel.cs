@@ -51,6 +51,27 @@ public class ShellViewModel : ObservableRecipient
             return;
         }
 
+        if (NavigationViewService.MenuItems != null)
+        {
+            if (e.SourcePageType == typeof(Annotate2Page) || e.SourcePageType == typeof(Annotate3Page) || e.SourcePageType == typeof(Annotate4Page))
+            {
+                Selected = NavigationViewService.MenuItems[2];
+                return;
+            }
+
+            if (e.SourcePageType == typeof(Train2Page) || e.SourcePageType == typeof(Train3Page))
+            {
+                Selected = NavigationViewService.MenuItems[3];
+                return;
+            }
+
+            if (e.SourcePageType == typeof(Detect2Page) || e.SourcePageType == typeof(Detect3Page))
+            {
+                Selected = NavigationViewService.MenuItems[4];
+                return;
+            }
+        }
+
         var selectedItem = NavigationViewService.GetSelectedItem(e.SourcePageType);
         if (selectedItem != null)
         {

@@ -167,19 +167,13 @@
   &lt;/actions&gt;
 &lt;/toast&gt;</value>
   </data>
-  <data name="Shell_Annotate1.Content" xml:space="preserve">
+  <data name="Shell_Annotate.Content" xml:space="preserve">
     <value>标注</value>
   </data>
-  <data name="Shell_Detect1.Content" xml:space="preserve">
+  <data name="Shell_Detect.Content" xml:space="preserve">
     <value>检测</value>
   </data>
-  <data name="Shell_Train1.Content" xml:space="preserve">
-    <value>训练</value>
-  </data>
-  <data name="Shell_Train2.Content" xml:space="preserve">
-    <value>训练</value>
-  </data>
-  <data name="Shell_Train3.Content" xml:space="preserve">
+  <data name="Shell_Train.Content" xml:space="preserve">
     <value>训练</value>
   </data>
   <data name="AppNotificationFailure" xml:space="preserve">
@@ -195,17 +189,5 @@
     &lt;action content="确认" arguments="action=Settings"/&gt;
   &lt;/actions&gt;
 &lt;/toast&gt;</value>
-  </data>
-  <data name="Shell_Annotate2.Content" xml:space="preserve">
-    <value>标注</value>
-  </data>
-  <data name="Shell_Annotate3.Content" xml:space="preserve">
-    <value>标注</value>
-  </data>
-  <data name="Shell_Annotate4.Content" xml:space="preserve">
-    <value>标注</value>
-  </data>
-  <data name="Shell_Detect2.Content" xml:space="preserve">
-    <value>检测</value>
   </data>
 </root>

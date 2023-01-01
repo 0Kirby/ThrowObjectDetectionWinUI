@@ -49,17 +49,17 @@
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe734;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_Annotate1" helpers:NavigationHelper.NavigateTo="TinyThrow.ViewModels.Annotate1ViewModel">
+                <NavigationViewItem x:Uid="Shell_Annotate" helpers:NavigationHelper.NavigateTo="TinyThrow.ViewModels.Annotate1ViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe70f;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_Train1" helpers:NavigationHelper.NavigateTo="TinyThrow.ViewModels.Train1ViewModel">
+                <NavigationViewItem x:Uid="Shell_Train" helpers:NavigationHelper.NavigateTo="TinyThrow.ViewModels.Train1ViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe945;"/>
                     </NavigationViewItem.Icon>
                 </NavigationViewItem>
-                <NavigationViewItem x:Uid="Shell_Detect1" helpers:NavigationHelper.NavigateTo="TinyThrow.ViewModels.Detect1ViewModel">
+                <NavigationViewItem x:Uid="Shell_Detect" helpers:NavigationHelper.NavigateTo="TinyThrow.ViewModels.Detect1ViewModel">
                     <NavigationViewItem.Icon>
                         <FontIcon FontFamily="{StaticResource SymbolThemeFontFamily}" Glyph="&#xe8a3;"/>
                     </NavigationViewItem.Icon>
