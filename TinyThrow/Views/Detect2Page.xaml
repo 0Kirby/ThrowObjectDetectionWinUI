@@ -7,6 +7,262 @@
     mc:Ignorable="d">
 
     <Grid x:Name="ContentArea">
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ScrollViewer>
+            <StackPanel Spacing="10" Margin="0, 10, 10, 10" >
+                <TextBlock Text="超参数" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE91B;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="imgsz" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="输入图片分辨率" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBox x:Name="imgsz" PlaceholderText="6016" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center" TextChanged="Button_Enable_Text"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE7C5;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="augment" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="增强推理，增加识别率，但耗时较长" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <ToggleSwitch x:Name="augment" VerticalAlignment="Center" Margin="0, 0, -50, 0" Toggled="Button_Enable_Toggle"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xF0F7;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="half" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="使用FP16半精度浮点数加速推理" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <ToggleSwitch x:Name="half" VerticalAlignment="Center" Margin="0, 0, -50, 0" Toggled="Button_Enable_Toggle"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <TextBlock Text="配置文件" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE724;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="weights" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="训练好的权重文件.pt的路径" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="选取文件" Click="BrowseBtn1_Click" Margin="5"/>
+                        </StackPanel>
+                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="weightsText" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" TextChanged="Button_Enable_Text"/>
+                    </Grid>
+                </Border>
+                <TextBlock Text="多卡训练" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xEC48;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="cpu-only" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="仅使用CPU进行训练" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <ToggleSwitch x:Name="cpuOnly" VerticalAlignment="Center" Margin="0, 0, -50, 0" Toggled="Button_Enable_Toggle"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE950;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="device" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="训练使用的显卡，如0、0,1、0,1,2,3等" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <TextBox x:Name="device" PlaceholderText="0" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center" Text="0" TextChanged="Button_Enable_Text"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <TextBlock Text="文件夹路径" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8F7;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="algorithm" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="指定TinyThrow算法文件夹的路径" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="选取文件夹" Click="BrowseBtn2_Click" Margin="5"/>
+                        </StackPanel>
+                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="scriptText" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" TextChanged="Button_Enable_Text"/>
+                    </Grid>
+                </Border>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8B7;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="dataset" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="指定数据集dataset文件夹的路径，test文件夹为测试集，请按照左图组织文件" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="选取文件夹" Click="BrowseBtn3_Click" Margin="5"/>
+                        </StackPanel>
+                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="datasetText" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" TextChanged="Button_Enable_Text"/>
+                    </Grid>
+                </Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="0, 0, 5, 0" Padding="5" CornerRadius="5">
+                        <TreeView>
+                            <TreeView.RootNodes>
+                                <TreeViewNode Content="dataset" IsExpanded="True">
+                                    <TreeViewNode.Children>
+                                        <TreeViewNode Content="images" IsExpanded="True">
+                                            <TreeViewNode.Children>
+                                                <TreeViewNode Content="train" IsExpanded="True"/>
+                                                <TreeViewNode Content="val" IsExpanded="True"/>
+                                                <TreeViewNode Content="test" IsExpanded="True"/>
+                                            </TreeViewNode.Children>
+                                        </TreeViewNode>
+                                        <TreeViewNode Content="labels" IsExpanded="True">
+                                            <TreeViewNode.Children>
+                                                <TreeViewNode Content="train" IsExpanded="True"/>
+                                                <TreeViewNode Content="val" IsExpanded="True"/>
+                                                <TreeViewNode Content="test" IsExpanded="True"/>
+                                            </TreeViewNode.Children>
+                                        </TreeViewNode>
+                                    </TreeViewNode.Children>
+                                </TreeViewNode>
+                            </TreeView.RootNodes>
+                        </TreeView>
+                    </Border>
+                    <Border Grid.Column="1" BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Margin="5, 0, 0, 0" Padding="5" CornerRadius="5">
+                        <ListView>
+                            <x:String>python>=3.9.0</x:String>
+                            <x:String>CUDA==11.3</x:String>
+                            <x:String>torch>=1.10.0</x:String>
+                            <x:String>torchvision>=0.8.1</x:String>
+                            <x:String>tensorboard>=2.4.1</x:String>
+                            <x:String>matplotlib>=3.2.2</x:String>
+                            <x:String>numpy>=1.18.5</x:String>
+                            <x:String>opencv-python>=4.1.2</x:String>
+                        </ListView>
+                    </Border>
+                </Grid>
+                <TextBlock Text="Python解释器路径" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <InfoBar IsOpen="True" Severity="Informational" Title="提示" Message="如果已在设置中配置好Python解释器路径，此处可不必重复配置。" BorderBrush="Gray"/>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE756;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="python" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="指定python解释器的路径，请按照右图安装依赖" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="转到设置" Margin="5" Click="SettingsButton_Click"/>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+                <Button x:Name="start" Margin="0, 5, 0, 0" Style="{StaticResource AccentButtonStyle}" IsEnabled="False" Content="开始检测" Width="200" HorizontalAlignment="Center" Click="RightButton_Click"/>
+            </StackPanel>
+        </ScrollViewer>
+        <Button Grid.Row="1" Width="40" Height="40" Click="HomeButton_Click">
+            <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE80F;" FontSize="16"/>
+        </Button>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Width="40" Height="40" Margin="10" Click="LeftButton_Click">
+                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE76B;" FontSize="16"/>
+            </Button>
+            <Button x:Name="RightButton" Width="40" Height="40" Click="RightButton_Click" IsEnabled="False">
+                <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE76C;" FontSize="16"/>
+            </Button>
+        </StackPanel>
     </Grid>
 </Page>

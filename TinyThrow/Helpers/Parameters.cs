@@ -9,6 +9,11 @@ public class Parameters
     private readonly string model;
     private readonly string scale;
     private readonly string device;
+
+    private readonly bool augment;
+    private readonly bool half;
+    private readonly string weights;
+    private readonly string dataset;
     public string Path
     {
         get; set;
@@ -41,6 +46,23 @@ public class Parameters
     {
         get; set;
     }
+    public bool Augment
+    {
+        get; set;
+    }
+    public bool Half
+    {
+        get; set;
+    }
+    public string Weights
+    {
+        get; set;
+    }
+    public string Dataset
+    {
+        get; set;
+    }
+
     public Parameters(string path, string folder, string img, string batch, string epoch, string model, string scale, string device)
     {
         Path = path;
@@ -51,5 +73,17 @@ public class Parameters
         Model = model;
         Scale = scale;
         Device = device;
+    }
+
+    public Parameters(string path, string folder, string img, string device, bool augment, bool half, string weights, string dataset)
+    {
+        Path = path;
+        Folder = folder;
+        Img = img;
+        Device = device;
+        Augment = augment;
+        Half = half;
+        Weights = weights;
+        Dataset = dataset;
     }
 }

@@ -165,29 +165,7 @@
 						</StackPanel>
 					</Grid>
 				</Border>
-				<TextBlock Text="数据集路径" Style="{StaticResource SettingHeaderTextStyle}"/>
-                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="5*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8B7;" Margin="10, 5, 5, 5"/>
-                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
-                            <TextBlock Text="dataset" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="指定数据集dataset文件夹的路径，请按照左图组织文件" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
-                            <Button Content="选取文件夹" Click="BrowseBtn1_Click" Margin="5"/>
-                        </StackPanel>
-                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="DatasetText" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" TextChanged="Button_Enable_Text"/>
-                    </Grid>
-                </Border>
+                <TextBlock Text="文件夹路径" Style="{StaticResource SettingHeaderTextStyle}"/>
                 <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -205,9 +183,31 @@
                             <TextBlock Text="指定TinyThrow算法文件夹的路径" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button Content="选取文件夹" Click="BrowseBtn1_Click" Margin="5"/>
+                        </StackPanel>
+                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="scriptText" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" TextChanged="Button_Enable_Text"/>
+                    </Grid>
+                </Border>
+                <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE8B7;" Margin="10, 5, 5, 5"/>
+                        <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
+                            <TextBlock Text="dataset" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
+                            <TextBlock Text="指定数据集dataset文件夹的路径，train文件夹为训练集，val文件夹为验证集，请按照左图组织文件" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Content="选取文件夹" Click="BrowseBtn2_Click" Margin="5"/>
                         </StackPanel>
-                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="ScriptText" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" TextChanged="Button_Enable_Text"/>
+                        <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="datasetText" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" TextChanged="Button_Enable_Text"/>
                     </Grid>
                 </Border>
                 <Grid>

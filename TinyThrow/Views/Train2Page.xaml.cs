@@ -42,27 +42,28 @@ public sealed partial class Train2Page : Page
 
         navigationService.NavigateTo(typeof(Train1ViewModel).FullName!);
     }
+
     private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         ViewModel2 = App.GetService<SettingsViewModel>();
-        Parameters parameters = new Parameters(ViewModel2.Path, ScriptText.Text, imgsz.Text, batch.Text, epoch.Text, (string)model.SelectedItem, (string)scale.SelectedItem, device.Text);
+        Parameters parameters = new Parameters(ViewModel2.Path, scriptText.Text, imgsz.Text, batch.Text, epoch.Text, (string)model.SelectedItem, (string)scale.SelectedItem, device.Text);
 
         //生成指定数据集路径的配置文件
-        string[] output = ReadYaml(ScriptText.Text + "/data/dataset.yaml", 10, 1);
+        string[] output = ReadYaml(scriptText.Text + "/data/dataset.yaml", 10, 1);
         if (output[0] != null)
         {
-            output[1] = "path: " + DatasetText.Text;
-            WriteYaml(ScriptText.Text + "/data/dataset_new.yaml", output);
+            output[1] = "path: " + datasetText.Text;
+            WriteYaml(scriptText.Text + "/data/dataset_new.yaml", output);
 
             //生成自定义算法规模的配置文件
             string path2 = "";
             if (model.SelectedItem.ToString() == "TinyThrow")
             {
-                path2 = ScriptText.Text + "/models/TinyThrow.yaml";
+                path2 = scriptText.Text + "/models/TinyThrow.yaml";
             }
             else
             {
-                path2 = ScriptText.Text + "/models/YOLOv5.yaml";
+                path2 = scriptText.Text + "/models/YOLOv5.yaml";
             }
 
             output = ReadYaml(path2, 4, 2);
@@ -95,13 +96,14 @@ public sealed partial class Train2Page : Page
             }
 
             output[1] = "depth_multiple: " + depth + "  # model depth multiple\n" + "width_multiple: " + width + "  # layer channel multiple";
-            WriteYaml(ScriptText.Text + "/models/script.yaml", output);
+            WriteYaml(scriptText.Text + "/models/script.yaml", output);
 
             var navigationService = App.GetService<INavigationService>();
 
             navigationService.NavigateTo(typeof(Train3ViewModel).FullName!, parameters);
         }
     }
+
     private void SettingsButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         var navigationService = App.GetService<INavigationService>();
@@ -119,10 +121,11 @@ public sealed partial class Train2Page : Page
 
         if (file != null)
         {
-            DatasetText.Text = file.Path;
+            scriptText.Text = file.Path;
         }
         window.Close();
     }
+
     private async void BrowseBtn2_Click(object sender, RoutedEventArgs e)
     {
         FolderPicker folderPicker = new();
@@ -134,7 +137,7 @@ public sealed partial class Train2Page : Page
 
         if (file != null)
         {
-            ScriptText.Text = file.Path;
+            datasetText.Text = file.Path;
         }
         window.Close();
     }
@@ -142,7 +145,7 @@ public sealed partial class Train2Page : Page
     private void Button_Enable_Text(object sender, TextChangedEventArgs e)
     {
         if (imgsz.Text != "" && batch.Text != "" && epoch.Text != "" && model.SelectedItem != null && scale.SelectedItem != null
-            && device.Text != "" && DatasetText.Text != "" && ScriptText.Text != "")
+            && device.Text != "" && scriptText.Text != "" && datasetText.Text != "")
         {
             RightButton.IsEnabled = true;
             start.IsEnabled = true;
@@ -157,9 +160,8 @@ public sealed partial class Train2Page : Page
     private void Button_Enable_Selection(object sender, SelectionChangedEventArgs e)
     {
         if (imgsz.Text != "" && batch.Text != "" && epoch.Text != "" && model.SelectedItem != null && scale.SelectedItem != null
-            && device.Text != "" && DatasetText.Text != "" && ScriptText.Text != "")
+            && device.Text != "" && scriptText.Text != "" && datasetText.Text != "")
         {
-            cpuOnly.IsOn = false;
             RightButton.IsEnabled = true;
             start.IsEnabled = true;
         }
@@ -248,7 +250,7 @@ public sealed partial class Train2Page : Page
                 CloseButtonText = "关闭",
                 XamlRoot = XamlRoot
             };
-            noFileDialog.ShowAsync();
+            _ = noFileDialog.ShowAsync();
         });
     }
 }
