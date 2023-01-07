@@ -32,13 +32,13 @@ public sealed partial class Detect2Page : Page
     {
         var navigationService = App.GetService<INavigationService>();
 
-        navigationService.NavigateTo(typeof(Train1ViewModel).FullName!);
+        navigationService.NavigateTo(typeof(Detect1ViewModel).FullName!);
     }
     private void LeftButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
         var navigationService = App.GetService<INavigationService>();
 
-        navigationService.NavigateTo(typeof(Train1ViewModel).FullName!);
+        navigationService.NavigateTo(typeof(Detect1ViewModel).FullName!);
     }
     private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
@@ -148,7 +148,6 @@ public sealed partial class Detect2Page : Page
             return false;
         }
     }
-
 
     private void DisplayFileNotFoundDialog()
     {

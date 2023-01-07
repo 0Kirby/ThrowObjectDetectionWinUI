@@ -27,6 +27,13 @@ public sealed partial class Train3Page : Page
     {
         get;
     }
+    public Train3Page()
+    {
+        ViewModel = App.GetService<Train3ViewModel>();
+        NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
+        InitializeComponent();
+        shellViewModel = ShellPage.ViewModelPublic;
+    }
 
     private void ProcessExited(object? sender, EventArgs e)
     {
@@ -60,6 +67,7 @@ public sealed partial class Train3Page : Page
             stopTrain.IsEnabled = false;
             home.IsEnabled = true;
             left.IsEnabled = true;
+            progressRing.IsActive = false;
             shellViewModel.NavigationViewService.EnableNavigationView();
 
             TimeSpan ts = p.ExitTime - startTime;
@@ -99,6 +107,8 @@ public sealed partial class Train3Page : Page
         stopTrain.IsEnabled = true;
         home.IsEnabled = false;
         left.IsEnabled = false;
+        progressRing.IsActive = true;
+        timerText.Text = "----/--/-- --:--:--    |    ----/--/-- --:--:--    |    00:00:00";
         shellViewModel.NavigationViewService.DisableNavigationView();
         LaunchProcess();
         SetTimer();
@@ -111,6 +121,10 @@ public sealed partial class Train3Page : Page
     {
         try
         {
+            run = new Run();
+            hyperlink = new Hyperlink();
+            hyperlink.Click += OpenOutputFolder;
+
             var dirs = Directory.GetDirectories(parameters.Folder + @"\runs\train\", "exp*", SearchOption.TopDirectoryOnly);
             int max = 0;
             string r = @"[0-9]+";
@@ -131,10 +145,6 @@ public sealed partial class Train3Page : Page
                     max = 1;
                 //var numberString = System.Text.RegularExpressions.Regex.Replace(dirName, @"[^0-9]+", "");
             }
-            hyperlink = new Hyperlink();
-            hyperlink.Click += OpenOutputFolder;
-
-            run = new Run();
 
             if (max != 0)
                 run.Text = parameters.Folder + @"\runs\train\exp" + (max + 1);
@@ -151,13 +161,6 @@ public sealed partial class Train3Page : Page
             hyperlink.Inlines.Add(run);
             output.Inlines.Add(hyperlink);
         }
-    }
-    public Train3Page()
-    {
-        ViewModel = App.GetService<Train3ViewModel>();
-        NavigationCacheMode = Microsoft.UI.Xaml.Navigation.NavigationCacheMode.Enabled;
-        InitializeComponent();
-        shellViewModel = ShellPage.ViewModelPublic;
     }
 
     private void HomeButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
