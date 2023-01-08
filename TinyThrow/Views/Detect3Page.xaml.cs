@@ -20,6 +20,7 @@ public sealed partial class Detect3Page : Page
     private Run run;
     private Hyperlink hyperlink;
     private readonly ShellViewModel shellViewModel;
+    private bool tipPoped = false;
 
     public Detect3ViewModel ViewModel
     {
@@ -33,7 +34,6 @@ public sealed partial class Detect3Page : Page
         InitializeComponent();
         shellViewModel = ShellPage.ViewModelPublic;
     }
-
 
     private void ProcessExited(object? sender, EventArgs e)
     {
@@ -68,6 +68,7 @@ public sealed partial class Detect3Page : Page
             home.IsEnabled = true;
             left.IsEnabled = true;
             progressRing.IsActive = false;
+            autoScroll.IsEnabled = false;
             shellViewModel.NavigationViewService.EnableNavigationView();
 
             TimeSpan ts = p.ExitTime - startTime;
@@ -102,6 +103,9 @@ public sealed partial class Detect3Page : Page
         left.IsEnabled = false;
         progressRing.IsActive = true;
         timerText.Text = "----/--/-- --:--:--    |    ----/--/-- --:--:--    |    00:00:00";
+        outputText.Text = "";
+        autoScroll.IsEnabled = true;
+        autoScroll.IsChecked = true;
         shellViewModel.NavigationViewService.DisableNavigationView();
         LaunchProcess();
         SetTimer();
@@ -189,10 +193,47 @@ public sealed partial class Detect3Page : Page
         }
 
         p.StartInfo.UseShellExecute = false;
+        p.StartInfo.RedirectStandardOutput = true;
+        p.StartInfo.RedirectStandardError = true;
+        p.StartInfo.CreateNoWindow = true;
+        p.OutputDataReceived += new DataReceivedEventHandler(OutputHandler);
+        p.OutputDataReceived += new DataReceivedEventHandler(TipPopupHandler);
+        p.ErrorDataReceived += new DataReceivedEventHandler(OutputHandler);
+        p.ErrorDataReceived += new DataReceivedEventHandler(TipPopupHandler);
         p.EnableRaisingEvents = true;
         p.Exited += new EventHandler(ProcessExited);
         p.Start();//启动进程
+        p.BeginOutputReadLine();
+        p.BeginErrorReadLine();
         startTime = p.StartTime;
+    }
+
+    private void OutputHandler(object sender, DataReceivedEventArgs e)
+    {
+        MainWindow.MyDispatcherQueue.TryEnqueue(() =>
+        {
+            outputText.Text += e.Data + Environment.NewLine;
+            if (autoScroll.IsChecked == true)
+            {
+                scrollViewer.UpdateLayout();
+                scrollViewer.ChangeView(null, scrollViewer.ScrollableHeight, null);
+                //scrollViewer.ScrollToVerticalOffset(scrollViewer.ScrollableHeight);
+            }
+        });
+    }
+
+    private void TipPopupHandler(object sender, DataReceivedEventArgs e)
+    {
+        MainWindow.MyDispatcherQueue.TryEnqueue(() =>
+        {
+            if (tipPoped == false)
+            {
+                tipPoped = true;
+                tip.IsOpen = true;
+                p.OutputDataReceived -= TipPopupHandler;
+                p.ErrorDataReceived -= TipPopupHandler;
+            }
+        });
     }
 
     private void SetTimer()
