@@ -7,6 +7,7 @@ using Microsoft.UI.Xaml.Navigation;
 using TinyThrow.Contracts.Services;
 using TinyThrow.Helpers;
 using TinyThrow.ViewModels;
+using Windows.ApplicationModel.DataTransfer;
 
 namespace TinyThrow.Views;
 
@@ -68,6 +69,7 @@ public sealed partial class Detect3Page : Page
             home.IsEnabled = true;
             left.IsEnabled = true;
             progressRing.IsActive = false;
+            bottomProgressRing.IsActive = false;
             autoScroll.IsEnabled = false;
             shellViewModel.NavigationViewService.EnableNavigationView();
 
@@ -75,6 +77,7 @@ public sealed partial class Detect3Page : Page
 
             string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
             timerText.Text = startTime + "    |    " + p.ExitTime + "    |    " + elapsedTime;
+            bottomTimerText.Text = elapsedTime;
         });
         App.GetService<IAppNotificationService>().Show(string.Format(notification.GetLocalized(), AppContext.BaseDirectory));
     }
@@ -102,7 +105,9 @@ public sealed partial class Detect3Page : Page
         home.IsEnabled = false;
         left.IsEnabled = false;
         progressRing.IsActive = true;
+        bottomProgressRing.IsActive = true;
         timerText.Text = "----/--/-- --:--:--    |    ----/--/-- --:--:--    |    00:00:00";
+        bottomTimerText.Text = "00:00:00";
         outputText.Text = "";
         autoScroll.IsEnabled = true;
         autoScroll.IsChecked = true;
@@ -257,6 +262,7 @@ public sealed partial class Detect3Page : Page
             // Format and display the TimeSpan value.
             string elapsedTime = string.Format("{0:00}:{1:00}:{2:00}", ts.Hours, ts.Minutes, ts.Seconds);
             timerText.Text = startTime + @"    |    ----/--/-- --:--:--    |    " + elapsedTime;
+            bottomTimerText.Text = elapsedTime;
         });
     }
 
@@ -285,5 +291,13 @@ public sealed partial class Detect3Page : Page
                 _ = pleaseWait.ShowAsync();
             });
         }
+    }
+
+    private void copyButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
+    {
+        DataPackage dataPackage = new DataPackage();
+        dataPackage.RequestedOperation = DataPackageOperation.Copy;
+        dataPackage.SetText(outputText.Text);
+        Clipboard.SetContent(dataPackage);
     }
 }
