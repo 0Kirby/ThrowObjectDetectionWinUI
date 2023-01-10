@@ -66,14 +66,14 @@ public class SettingsViewModel : ObservableRecipient
             });
 
         SwitchThemeCommand2 = new RelayCommand<string>(
-           async (param) =>
-           {
-               if (_path != param)
-               {
-                   _path = param;
-                   await _themeSelectorService.SetPathAsync(param);
-               }
-           });
+            async (param) =>
+            {
+                if (_path != param)
+                {
+                    _path = param;
+                    await _themeSelectorService.SetPathAsync(param);
+                }
+            });
     }
 
     private static string GetVersionDescription()

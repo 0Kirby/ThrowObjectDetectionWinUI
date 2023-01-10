@@ -2,16 +2,17 @@
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 using TinyThrow.Contracts.Services;
+using TinyThrow.Helpers;
 using TinyThrow.ViewModels;
 using Windows.Storage.Pickers;
 
 namespace TinyThrow.Views;
 
-// TODO: Set the URL for your privacy policy by updating SettingsPage_PrivacyTermsLink.NavigateUri in Resources.resw.
 public sealed partial class SettingsPage : Page
 {
     private readonly ILocalSettingsService _localSettingsService;
     private readonly IThemeSelectorService _themeSelectorService;
+    private static readonly HttpClient client = new();
 
     public SettingsViewModel ViewModel
     {
@@ -24,6 +25,7 @@ public sealed partial class SettingsPage : Page
         InitializeComponent();
         _localSettingsService = App.GetService<ILocalSettingsService>();
         _themeSelectorService = App.GetService<IThemeSelectorService>();
+        _ = CheckUpdate();
         //PythonPath.Text = await LoadPathFromSettingsAsync();
         //PythonPath.Text = _localSettingsService.ReadSettingAsync<string>("pythonInterpreter").ToString();
     }
@@ -69,8 +71,6 @@ public sealed partial class SettingsPage : Page
         Process p = new();
         //p.StartInfo.WorkingDirectory = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5";
         p.StartInfo.FileName = ViewModel.Path; //虚拟环境中python的安装路径
-                                               //p.StartInfo.Arguments = @"C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5\models\yolo.py --cfg C:\Users\0Kirby\PycharmProjects\MachineLearning\CarObjectDetectionTest\yolov5\models\yolov5n6-C3TR-CBAM-P2.yaml";
-
         // Get the path to the app's Assets folder.
         string root = Environment.CurrentDirectory;
         p.StartInfo.Arguments = "\"" + root + @"\Assets\test.py" + "\"";
@@ -83,4 +83,37 @@ public sealed partial class SettingsPage : Page
         p.BeginErrorReadLine();
         p.ErrorDataReceived += ErrorDataReceived;
     }
+
+    private async Task CheckUpdate()
+    {
+        try
+        {
+            HttpResponseMessage response = await client.GetAsync("https://tiny.zerokirby.cn/version.txt");
+            response.EnsureSuccessStatusCode();
+            string responseBody = await response.Content.ReadAsStringAsync();
+
+            if ($"{"AppDisplayName".GetLocalized()} - " + responseBody.TrimEnd('\r', '\n') == ViewModel.VersionDescription)
+            {
+                MainWindow.MyDispatcherQueue.TryEnqueue(() =>
+                {
+                    updateText.Text += "    当前已是最新版本！";
+                });
+            }
+            else
+            {
+                MainWindow.MyDispatcherQueue.TryEnqueue(() =>
+                {
+                    updateText.Text += "    发现新版本，请至下方链接下载！";
+                });
+            }
+        }
+        catch (HttpRequestException)
+        {
+            MainWindow.MyDispatcherQueue.TryEnqueue(() =>
+            {
+                updateText.Text += "    检测更新失败,请检查您的网络链接！";
+            });
+        }
+    }
 }
+

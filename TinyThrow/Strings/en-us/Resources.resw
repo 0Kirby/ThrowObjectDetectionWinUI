@@ -145,13 +145,13 @@
     <value>About this application</value>
   </data>
   <data name="Settings_AboutDescription.Text" xml:space="preserve">
-    <value>TODO: Replace with your app description.</value>
+    <value>Copyright © 2021-2023. 0Kirby All rights reserved.</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.Content" xml:space="preserve">
-    <value>Privacy Statement</value>
+    <value>Homepage</value>
   </data>
   <data name="SettingsPage_PrivacyTermsLink.NavigateUri" xml:space="preserve">
-    <value>https://YourPrivacyUrlGoesHere/</value>
+    <value>https://tiny.zerokirby.cn/</value>
   </data>
   <data name="AppNotificationSuccess" xml:space="preserve">
     <value>&lt;toast launch="action=ToastClick"&gt;
