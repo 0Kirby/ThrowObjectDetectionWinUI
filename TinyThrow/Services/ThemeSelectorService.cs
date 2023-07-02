@@ -7,7 +7,7 @@ namespace TinyThrow.Services;
 public class ThemeSelectorService : IThemeSelectorService
 {
     private const string SettingsKey = "AppBackgroundRequestedTheme";
-    private const string SettingsKey2 = "pythonInterpreter";
+    private const string SettingsKey2 = "PythonInterpreter";
 
     public ElementTheme Theme { get; set; } = ElementTheme.Default;
     public string Path { get; set; } = "python";

@@ -20,7 +20,6 @@ public sealed partial class HomePage : Page
         _themeSelectorService = App.GetService<IThemeSelectorService>();
         InitializeComponent();
         Initialize();
-
     }
     private void RightButton_Click(object sender, Microsoft.UI.Xaml.RoutedEventArgs e)
     {
@@ -31,7 +30,7 @@ public sealed partial class HomePage : Page
 
     private async void Initialize()
     {
-        var interpreterPath = await _localSettingsService.ReadSettingAsync<string>("pythonInterpreter");
+        var interpreterPath = await _localSettingsService.ReadSettingAsync<string>("PythonInterpreter");
         if (interpreterPath is null)
         {
             await _themeSelectorService.SetPathAsync("python");

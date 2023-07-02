@@ -11,6 +11,6 @@
     PersistenceId="MainWindow"
     mc:Ignorable="d">
     <windowex:WindowEx.Backdrop>
-        <windowex:MicaSystemBackdrop/>
+        <windowex:MicaSystemBackdrop Kind="BaseAlt"/>
     </windowex:WindowEx.Backdrop>
 </windowex:WindowEx>

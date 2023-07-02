@@ -97,7 +97,7 @@
                         <TextBox Grid.Row="1" Grid.ColumnSpan="3" x:Name="weightsText" TextWrapping="Wrap" AcceptsReturn="True" MinWidth="400" TextChanged="Button_Enable_Text"/>
                     </Grid>
                 </Border>
-                <TextBlock Text="多卡训练" Style="{StaticResource SettingHeaderTextStyle}"/>
+                <TextBlock Text="多卡检测" Style="{StaticResource SettingHeaderTextStyle}"/>
                 <Border BorderThickness="1" BorderBrush="Gray" Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" Padding="5" CornerRadius="5">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -111,7 +111,7 @@
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xEC48;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
                             <TextBlock Text="cpu-only" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="仅使用CPU进行训练" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            <TextBlock Text="仅使用CPU进行检测" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <ToggleSwitch x:Name="cpuOnly" VerticalAlignment="Center" Margin="0, 0, -50, 0" Toggled="Button_Enable_Toggle"/>
@@ -131,7 +131,7 @@
                         <FontIcon FontFamily="Segoe Fluent Icons" Glyph="&#xE950;" Margin="10, 5, 5, 5"/>
                         <StackPanel Grid.Column="1" Margin="10" Orientation="Vertical">
                             <TextBlock Text="device" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap"/>
-                            <TextBlock Text="训练使用的显卡，如0、0,1、0,1,2,3等" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
+                            <TextBlock Text="检测使用的显卡，如0、0,1、0,1,2,3等" Style="{StaticResource CopyrightTextStyle}" TextWrapping="Wrap" Foreground="{ThemeResource SettingDefinitionBrush}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <TextBox x:Name="device" PlaceholderText="0" Height="24" Width="100" TextWrapping="NoWrap" VerticalAlignment="Center" Text="0" TextChanged="Button_Enable_Text"/>

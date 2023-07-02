@@ -27,7 +27,7 @@ public sealed partial class SettingsPage : Page
         _themeSelectorService = App.GetService<IThemeSelectorService>();
         _ = CheckUpdate();
         //PythonPath.Text = await LoadPathFromSettingsAsync();
-        //PythonPath.Text = _localSettingsService.ReadSettingAsync<string>("pythonInterpreter").ToString();
+        //PythonPath.Text = _localSettingsService.ReadSettingAsync<string>("PythonInterpreter").ToString();
     }
 
     private void ErrorDataReceived(object sender, DataReceivedEventArgs e)
@@ -55,10 +55,10 @@ public sealed partial class SettingsPage : Page
 
         if (file != null)
         {
-            //await _localSettingsService.SaveSettingAsync("pythonInterpreter", file.Path);
+            //await _localSettingsService.SaveSettingAsync("PythonInterpreter", file.Path);
             await _themeSelectorService.SetPathAsync(file.Path);
             //ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
-            //localSettings.Values["pythonInterpreter"] = file.Path;
+            //localSettings.Values["PythonInterpreter"] = file.Path;
             PythonPath.Text = file.Path;
             ViewModel.Path = file.Path;
         }
@@ -103,7 +103,7 @@ public sealed partial class SettingsPage : Page
             {
                 MainWindow.MyDispatcherQueue.TryEnqueue(() =>
                 {
-                    updateText.Text += "    发现新版本，请至下方链接下载！";
+                    updateText.Text += "    发现新版本" + responseBody.TrimEnd('\r', '\n') + "，请至下方链接下载！";
                 });
             }
         }
@@ -111,7 +111,7 @@ public sealed partial class SettingsPage : Page
         {
             MainWindow.MyDispatcherQueue.TryEnqueue(() =>
             {
-                updateText.Text += "    检测更新失败,请检查您的网络链接！";
+                updateText.Text += "    检测更新失败,请检查您的网络连接！";
             });
         }
     }

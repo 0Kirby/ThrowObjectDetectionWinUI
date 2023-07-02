@@ -12,7 +12,7 @@
   <Identity
     Name="51C32857-4A67-44B6-ABC6-8E8770AB7C41"
     Publisher="CN=0Kirby"
-    Version="1.0.0.0" />
+    Version="1.0.1.0" />
 
   <Properties>
     <DisplayName>TinyThrow</DisplayName>

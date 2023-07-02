@@ -2,17 +2,17 @@
 ## 高空抛物目标检测TinyThrow
 **我的研究生课题《一种基于YOLOv5改进的轻量实时高空抛物目标检测算法TinyThrow》**  
 [主页/Homepage](https://tiny.zerokirby.cn)  
-基于 **WinUI 3.0** ，使用 **Windows App SDK 1.2.2 (1.2.221209.1)** 构建。  
+基于 **WinUI 3.0** ，使用 **Windows App SDK 1.3.2 (1.3.230602002)** 构建。  
 ![Screenshot](Screenshot.png)
 
 # 下载
 ## 最新版本
-**v1.0.0.0**  
+**v1.0.1.0**  
 ## 系统要求
 Windows **11**  
 Windows **10** (October 2018 Update) build **17763** / version **1809** 以上
 ## TinyThrow本体
-[阿里云盘](https://www.aliyundrive.com/s/Kvg6YSiVEQu) [百度网盘](https://pan.baidu.com/s/1LRoIljunazwYrNETvSUeyg?pwd=olgr) [蓝奏云](https://0kirby.lanzouf.com/iQkPj0l5dkza) [Github Releases](https://github.com/0Kirby/ThrowObjectDetectionWinUI/releases/latest)  
+[阿里云盘](https://www.aliyundrive.com/s/ovEFpJ9E5yF) [百度网盘](https://pan.baidu.com/s/1DXVS6VOIK4vUG97zGzY6dw?pwd=9gln) [蓝奏云](https://0kirby.lanzouj.com/iVWNX111wndc) [Github Releases](https://github.com/0Kirby/ThrowObjectDetectionWinUI/releases/latest)  
 ## ~~TinyThrow算法~~
 ~~尚未公开~~  
 ## YOLOv5算法

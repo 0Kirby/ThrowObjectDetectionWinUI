@@ -40,7 +40,7 @@ public sealed partial class Annotate3Page : Page
     {
         int lastIndex;
         string substr = "";
-        var interpreterPath = await _localSettingsService.ReadSettingAsync<string>("pythonInterpreter");
+        var interpreterPath = await _localSettingsService.ReadSettingAsync<string>("PythonInterpreter");
         Process p = new();
         if (interpreterPath is not null)
         {
@@ -61,8 +61,8 @@ public sealed partial class Annotate3Page : Page
         {
             ContentDialog noLabelImgDialog = new()
             {
-                Title = "未找到labelImg",
-                Content = "请检查环境中是否安装labelImg并再试一次。",
+                Title = "未找到LabelImg",
+                Content = "请检查环境中是否安装LabelImg并再试一次。",
                 CloseButtonText = "关闭",
                 XamlRoot = XamlRoot
             };

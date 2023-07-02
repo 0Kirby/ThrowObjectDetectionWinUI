@@ -18,6 +18,10 @@
     <PackageCertificateThumbprint>05D6996DF373995A262D58463AB869E6EADC8168</PackageCertificateThumbprint>
     <AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
     <SupportedOSPlatformVersion>10.0.17763.0</SupportedOSPlatformVersion>
+	<AccelerateBuildsInVisualStudio>true</AccelerateBuildsInVisualStudio>
+	<AssemblyVersion>1.0.1.0</AssemblyVersion>
+	<FileVersion>1.0.1.0</FileVersion>
+	<Version>1.0.1</Version>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,11 +29,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.0" />
-    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.2.221209.1" />
+    <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.3.230602002" />
     <PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
-    <PackageReference Include="WinUIEx" Version="2.1.0" />
+    <PackageReference Include="WinUIEx" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>

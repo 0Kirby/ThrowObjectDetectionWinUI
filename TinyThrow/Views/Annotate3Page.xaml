@@ -20,7 +20,7 @@
 							<TextBlock Margin="10" Text="设置标签" Style="{StaticResource ScenarioPageTextStyle}"/>
 							<TextBlock Margin="10" Grid.Row="1" Text="根据不同目标" Style="{StaticResource DescriptionTextStyle}" Foreground="Gray"/>
 							<TextBlock Margin="10" Grid.Row="2" Text="设置对应的标签" Style="{StaticResource DescriptionTextStyle}" Foreground="Gray"/>
-							<Button Margin="10" Grid.Row="3" Width="150" Style="{StaticResource AccentButtonStyle}" Content="打开labelImg" Click="OpenButton_Click"/>
+							<Button Margin="10" Grid.Row="3" Width="150" Style="{StaticResource AccentButtonStyle}" Content="打开LabelImg" Click="OpenButton_Click"/>
 						</Grid>
 					</StackPanel>
 					<Image Grid.Column="1" MaxHeight="500" Source="/Assets/AnnotatePage3.png" HorizontalAlignment="Right"/>
